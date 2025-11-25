@@ -168,7 +168,7 @@ export default function Navbar() {
               </AnimatePresence>
             </div>
 
-            <Link href="/business-spotlight" className="hover:text-cyan-600 transition">
+            <Link href="/blog" className="hover:text-cyan-600 transition">
               Business Spotlight
             </Link>
 
@@ -193,7 +193,7 @@ export default function Navbar() {
                   >
                     <div className="p-8 flex gap-10">
                       <div className="w-5/12">
-                        <Image src="/aboutus.webp" alt="About" width={380} height={240} className="rounded-xl shadow-lg w-full" />
+                        <Image src="/aboutus.jpg" alt="About" width={380} height={240} className="rounded-xl shadow-lg w-full" />
                         <h3 className="text-xl font-bold text-gray-900 mt-5">About Ultracom Networks</h3>
                         <p className="text-sm text-gray-600 mt-2">Trusted partner in connectivity & digital transformation.</p>
                         <Link href="/aboutus" className="mt-4 inline-flex items-center text-cyan-600 font-semibold hover:underline">
@@ -249,7 +249,7 @@ export default function Navbar() {
             <div className="p-8 space-y-6 text-lg font-medium text-gray-700">
               <Link href="/" onClick={() => setMobileOpen(false)}>Home</Link>
               <Link href="/services" onClick={() => setMobileOpen(false)}>Services</Link>
-              <Link href="/business-spotlight" onClick={() => setMobileOpen(false)}>Business Spotlight</Link>
+              <Link href="/blog" onClick={() => setMobileOpen(false)}>Business Spotlight</Link>
               <Link href="/aboutus" onClick={() => setMobileOpen(false)}>About Us</Link>
               <Link href="/contactus" onClick={() => setMobileOpen(false)}>Contact Us</Link>
             </div>
