@@ -83,7 +83,7 @@ export default function Footer() {
               >
                 LinkedIn
               </Link>
-              <Link 
+              {/* <Link 
                 href="https://youtube.com/@ultracomnetworks" 
                 target="_blank" 
                 rel="noopener noreferrer"
@@ -98,7 +98,7 @@ export default function Footer() {
                 className="block hover:text-blue-900 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-blue-900 after:transition-all after:duration-300 hover:after:w-full"
               >
                 X (Twitter)
-              </Link>
+              </Link> */}
             </nav>
           </div>
         </div>
