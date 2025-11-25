@@ -1,131 +1,112 @@
-// src/app/api/form/route.ts
-export const runtime = "nodejs";
-
-import { NextRequest, NextResponse } from "next/server";
-import formidable, { File as FormidableFile } from "formidable";
-import fs from "fs";
+import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 // Nodemailer transporter
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST || "mail.ultracomnetworks.pk",
-  port: Number(process.env.EMAIL_PORT) || 465,
-  secure: true,
-  auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
+  port: Number(process.env.EMAIL_PORT) || 587,
+  secure: false,
+  auth: {
+    user: process.env.EMAIL_USER || "sales@ultracomnetworks.pk",
+    pass: process.env.EMAIL_PASS || "",
+  },
   tls: { rejectUnauthorized: false },
+  connectionTimeout: 60000,
+  greetingTimeout: 30000,
+  socketTimeout: 60000,
 });
 
-// Disable Next.js default body parsing
-export const config = { api: { bodyParser: false } };
-
-// Helper to safely get string fields
-const getField = (field: string | string[] | undefined) => Array.isArray(field) ? field[0] : field || "";
-
-// Parse formidable form from Web Request
-async function parseForm(req: NextRequest): Promise<{ fields: formidable.Fields; files: formidable.Files }> {
-  const buf = Buffer.from(await req.arrayBuffer());
-  const form = formidable({ keepExtensions: true });
-  return new Promise((resolve, reject) => {
-    form.parse(buf as any, (err, fields, files) => {
-      if (err) reject(err);
-      else resolve({ fields, files });
-    });
-  });
-}
-
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   try {
     const contentType = req.headers.get("content-type") || "";
 
+    // ---------------------------
+    // 1. MULTIPART FORM (Resume / Career Form)
+    // ---------------------------
     if (contentType.includes("multipart/form-data")) {
-      // ==== CAREER FORM ====
-      const { fields, files } = await parseForm(req);
+      const formData = await req.formData();
 
-      const name = getField(fields.name);
-      const email = getField(fields.email);
-      const phone = getField(fields.phone);
-      const position = getField(fields.position);
-      const message = getField(fields.message);
-      const resumeFile = files.resume as FormidableFile | undefined;
+      const name = formData.get("name")?.toString() || "";
+      const email = formData.get("email")?.toString() || "";
+      const phone = formData.get("phone")?.toString() || "";
+      const position = formData.get("position")?.toString() || "";
+      const message = formData.get("message")?.toString() || "";
+      const resume = formData.get("resume") as File | null;
 
-      if (!name || !email || !message || !resumeFile) {
-        return NextResponse.json({ error: "Name, email, message, and resume are required." }, { status: 400 });
+      if (!name || !email || !message || !resume) {
+        return NextResponse.json(
+          { error: "All fields including resume are required." },
+          { status: 400 }
+        );
       }
 
-      const fileContent = fs.readFileSync(resumeFile.filepath);
+      const resumeBuffer = Buffer.from(await resume.arrayBuffer());
 
       await transporter.sendMail({
-        from: `"Ultracom Careers" <${process.env.EMAIL_USER}>`,
+        from: `"Career Form" <${process.env.EMAIL_USER}>`,
         to: process.env.EMAIL_USER,
         replyTo: email,
-        subject: `Career Application from ${name} - ${position || "General"}`,
-        text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone || "N/A"}\nPosition: ${position || "N/A"}\n\nMessage:\n${message}`,
+        subject: `Job Application: ${name} (${position})`,
         html: `
-          <div style="font-family: Arial, sans-serif; max-width:600px; margin:auto; padding:20px; border:1px solid #ddd; border-radius:12px; background:#f9f9f9;">
-            <h2 style="color:#1e40af;">New Career Application</h2>
-            <ul style="list-style:none; padding:0;">
-              <li><strong>Name:</strong> ${name}</li>
-              <li><strong>Email:</strong> <a href="mailto:${email}">${email}</a></li>
-              <li><strong>Phone:</strong> ${phone || "Not Provided"}</li>
-              <li><strong>Position:</strong> ${position || "Not Provided"}</li>
-            </ul>
-            <h3 style="color:#1e40af; margin-top:20px;">Message:</h3>
-            <div style="background:#ffffff; padding:16px; border-radius:8px; border-left:5px solid #3b82f6; font-size:15px;">
-              ${message.replace(/\n/g, "<br>")}
-            </div>
-            <p style="margin-top:20px; color:#6b7280; font-size:12px;">
-              Sent from Ultracom Careers page • ${new Date().toLocaleString()}
-            </p>
-          </div>
+          <h2>Career Application</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Phone:</strong> ${phone}</p>
+          <p><strong>Position:</strong> ${position}</p>
+          <p><strong>Message:</strong><br>${message.replace(/\n/g, "<br>")}</p>
         `,
         attachments: [
           {
-            filename: resumeFile.originalFilename || "resume.pdf",
-            content: fileContent,
+            filename: resume.name || "resume.pdf",
+            content: resumeBuffer,
+            contentType: resume.type,
           },
         ],
       });
 
-      return NextResponse.json({ message: "Career application submitted successfully!" }, { status: 200 });
-    } else {
-      // ==== CONTACT FORM ====
-      const body = await req.json();
-      const { name, company, email, phone, message } = body;
-
-      if (!name?.trim() || !email?.trim() || !message?.trim()) {
-        return NextResponse.json({ error: "Name, email, and message are required." }, { status: 400 });
-      }
-
-      await transporter.sendMail({
-        from: `"Ultracom Contact Form" <${process.env.EMAIL_USER}>`,
-        to: process.env.EMAIL_USER,
-        replyTo: email,
-        subject: `New Inquiry from ${name} - Ultracom Networks`,
-        text: `Name: ${name}\nCompany: ${company || "N/A"}\nEmail: ${email}\nPhone: ${phone || "N/A"}\n\nMessage:\n${message}`,
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width:600px; margin:auto; padding:20px; border:1px solid #ddd; border-radius:12px; background:#f9f9f9;">
-            <h2 style="color:#1e40af;">New Contact Form Submission</h2>
-            <ul style="list-style:none; padding:0;">
-              <li><strong>Name:</strong> ${name}</li>
-              <li><strong>Company:</strong> ${company || "Not provided"}</li>
-              <li><strong>Email:</strong> <a href="mailto:${email}">${email}</a></li>
-              <li><strong>Phone:</strong> ${phone || "Not provided"}</li>
-            </ul>
-            <h3 style="color:#1e40af; margin-top:20px;">Message:</h3>
-            <div style="background:#ffffff; padding:16px; border-radius:8px; border-left:5px solid #3b82f6; font-size:15px;">
-              ${message.replace(/\n/g, "<br>")}
-            </div>
-            <p style="margin-top:20px; color:#6b7280; font-size:12px;">
-              Sent from Ultracom Contact page • ${new Date().toLocaleString()}
-            </p>
-          </div>
-        `,
-      });
-
-      return NextResponse.json({ message: "Contact form submitted successfully!" }, { status: 200 });
+      return NextResponse.json({ message: "Application sent successfully!" });
     }
-  } catch (error) {
-    console.error("Form submission error:", error);
-    return NextResponse.json({ error: "Failed to submit form. Please try again later." }, { status: 500 });
+
+    // ---------------------------
+    // 2. JSON FORM (Contact / Book Now)
+    // ---------------------------
+    const body = await req.json();
+    const { name, email, phone, company, service, message } = body;
+
+    if (!name || !email || !message) {
+      return NextResponse.json(
+        { error: "Name, email, and message are required." },
+        { status: 400 }
+      );
+    }
+
+    // Dynamic subject for Book Now vs Contact
+    const subject = service
+      ? `Appointment Request: ${service} - ${name}`
+      : `Website Inquiry from ${name}`;
+
+    await transporter.sendMail({
+      from: `"Website Form" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_USER,
+      replyTo: email,
+      subject,
+      html: `
+        <h2>${service ? "New Appointment Request" : "New Website Inquiry"}</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone || "Not provided"}</p>
+        ${company ? `<p><strong>Company:</strong> ${company}</p>` : ""}
+        ${service ? `<p><strong>Service:</strong> ${service}</p>` : ""}
+        <p><strong>Message:</strong><br>${message.replace(/\n/g, "<br>")}</p>
+      `,
+    });
+
+    return NextResponse.json({ message: "Message sent successfully!" });
+  } catch (error: any) {
+    console.error("Mail Error:", error.message);
+    return NextResponse.json(
+      { error: "Failed to send email. Please try again later." },
+      { status: 500 }
+    );
   }
 }

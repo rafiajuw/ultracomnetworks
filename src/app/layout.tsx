@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import TopBar from "./Components/TopBar";
+// import TopBar from "./Components/TopBar";
 
 import Navbar from "@/app/Components/Navbar";
 import Footer from "@/app/Components/Footer";
@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${inter.variable} font-sans antialiased bg-white text-slate-800`}>
-        <TopBar />
+        {/* <TopBar /> */}
         <Navbar />
         <main>{children}</main>
         <Footer />

@@ -3,6 +3,7 @@ import Hero from "@/app/Components/Hero";
 import WhoWeAreSection from "@/app/Components/WhoWeAreSection"
 import Services from "@/app/Components/Services";
 import WebsiteIntroSection from "./Components/WebsiteIntroSection";
+import TestimonialsPage from "./Components/testimonal";
 
 
 
@@ -17,6 +18,7 @@ export default function Page() {
           < WhoWeAreSection />
           <Services />
           <WebsiteIntroSection />
+          <TestimonialsPage />
         
         
           

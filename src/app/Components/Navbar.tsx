@@ -4,257 +4,278 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight, Menu, X } from "lucide-react";
+import { Menu, X, Phone, Calendar, ChevronDown, Search, ChevronRight } from "lucide-react";
 
 export default function Navbar() {
-  const [active, setActive] = useState<number | null>(null);
+  const [activeDropdown, setActiveDropdown] = useState<null | "services" | "about">(null);
+  const [showForm, setShowForm] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const menu = [
-    { name: "Home", href: "/" },
+  // Services Dropdown Data
+  const servicesColumns = [
     {
-      name: "About Us",
-      mainLink: { name: "About Us", href: "/aboutus" },
-      introTitle: "Reliable Network Ecosystems",
-      introText: "Secure, scalable connectivity that powers your success.",
-      image: "/aboutus.jpg",
+      title: "Connectivity",
       items: [
-        { name: "Who We Are", href: "/aboutus#who-we-are" },
-        { name: "Our Mission", href: "/aboutus#our-mission" },
-        { name: "Our Location", href: "/aboutus#our-location" },
+        { name: "INTERNET", href: "/services/internet" },
+        { name: "LAN / WAN", href: "/services/lan-wan" },
+        { name: "Cloud WiFi", href: "/services/cloud-wifi" },
       ],
     },
     {
-      name: "Services",
-      mainLink: { name: "All Services", href: "/services" },
-      introTitle: "Comprehensive IT Solutions",
-      introText: "Explore our wide range of network and managed services.",
-      image: "/services.webp",
-      columns: [
-        {
-          title: "Connectivity Services",
-          items: [
-            { name: "INTERNET", href: "/services/internet" },
-            { name: "LAN/WAN", href: "/services/lan-wan" },
-            { name: "CLOUD WIFI", href: "/services/cloud-wifi" },
-          ],
-        },
-        {
-          title: "Professional Services",
-          items: [
-            { name: "NETWORK SUPPORT", href: "/services/network-support" },
-            { name: "DATA CENTER", href: "/services/data-center" },
-            { name: "CONSULTATION", href: "/services/consultation" },
-          ],
-        },
-        {
-          title: "Managed Services",
-          items: [
-            { name: "CALL CENTER", href: "/services/call-center" },
-            { name: "PBX Installation", href: "/services/pbx-installation" },
-          ],
-        },
+      title: "Professional",
+      items: [
+        { name: "Network Support", href: "/services/network-support" },
+        { name: "Data Center", href: "/services/data-center" },
+        { name: "Consultation", href: "/services/consultation" },
       ],
     },
     {
-      name: "Web Services",
-      mainLink: { name: "All Digital Solutions", href: "/webdevlopment2" },
-      introTitle: "Digital Growth Solutions",
-      introText: "Web, marketing, and branding solutions for your business.",
-      image: "/internet.jpeg",
-      columns: [
-        {
-          title: "Digital Services",
-          items: [
-            { name: "Website Development", href: "/webdevlopment2#website" },
-            { name: "Social Media Marketing", href: "/webdevlopment2#Social" },
-            { name: "Logo and Branding", href: "/webdevlopment2#Brand" },
-          ],
-        },
+      title: "Digital",
+      items: [
+        { name: "Website Development", href: "/webdevlopment2#website" },
+        { name: "Social Media Marketing", href: "/webdevlopment2#Social" },
+        { name: "Logo & Branding", href: "/webdevlopment2#Brand" },
+        { name: "Web Services", href: "/services/web-services" },
       ],
     },
-    { name: "Blog", href: "/blog" },
-    { name: "Contact Us", href: "/contactus" },
+  ];
+
+  // About Us Dropdown Data
+  const aboutColumns = [
+    {
+      title: "Company",
+      items: [
+        { name: "Our Story", href: "/aboutus#story" },
+        { name: "Mission & Vision", href: "/aboutus#mission" },
+        { name: "Core Values", href: "/aboutus#values" },
+      ],
+    },
+    {
+      title: "Team",
+      items: [
+        { name: "Leadership", href: "/aboutus#leadership" },
+        { name: "Careers", href: "/careers" },
+      ],
+    },
+    {
+      title: "More",
+      items: [
+        { name: "Partners", href: "/partners" },
+        { name: "Blog", href: "/blog" },
+      ],
+    },
   ];
 
   return (
     <>
-      {/* DESKTOP NAVBAR */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200 shadow-sm">
-        <nav className="max-w-7xl mx-auto h-24 px-6 lg:px-10 flex items-center justify-between">
-
-          {/* LOGO */}
-          <Link href="/" className="flex items-center gap-4">
-            <div className="relative w-36 h-16 bg-white border border-gray-300 rounded-lg shadow-sm overflow-hidden">
-              <Image src="/logo.png" alt="Ultracom Networks" fill className="object-contain p-3" />
-            </div>
-            <span className="text-lg font-semibold text-[#0a2640]"></span>
-          </Link>
-
-          {/* DESKTOP MENU */}
-          <div className="hidden lg:flex items-center gap-10">
-            {menu.map((item, idx) => (
-              <div
-                key={idx}
-                className="relative"
-                onMouseEnter={() => item.columns || item.items ? setActive(idx) : null}
-                onMouseLeave={() => setActive(null)}
-              >
-                {item.href ? (
-                  <Link
-                    href={item.href}
-                    className="group relative text-[16px] font-medium text-[#102b46] hover:text-[#0072CE] pb-1 transition-all"
-                  >
-                    {item.name}
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#0072CE] scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-                  </Link>
-                ) : (
-                  <button className="group flex items-center gap-1 text-[16px] font-medium text-[#102b46] hover:text-[#0072CE] pb-1 transition-all">
-                    {item.name}
-                    <motion.div
-                      animate={{ rotate: active === idx ? 180 : 0 }}
-                      className="w-3 h-3 border-r-2 border-b-2 border-current mt-1"
-                    />
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#0072CE] scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-                  </button>
-                )}
-
-                {/* MEGA DROPDOWN */}
-                <AnimatePresence>
-                  {active === idx && (item.columns || item.items) && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 15 }}
-                      className="absolute left-1/2 -translate-x-1/2 mt-6 w-[1100px] max-w-[95vw] bg-white/95 backdrop-blur-xl border border-gray-200 rounded-3xl shadow-2xl p-8 flex gap-10"
-                    >
-                      {/* LEFT IMAGE + INTRO + MAIN BUTTON */}
-                      <div className="w-1/3 flex flex-col gap-4">
-                        <div className="relative h-48 rounded-2xl overflow-hidden bg-linear-to-br from-blue-50 to-cyan-50">
-                          <Image
-                            src={item.image || "/internet.jpeg"}
-                            alt={item.name}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                        {item.introTitle && item.introText && (
-                          <div className="mt-2">
-                            <h4 className="text-base font-bold text-[#0072CE]">{item.introTitle}</h4>
-                            <p className="text-sm text-gray-600 mt-1">{item.introText}</p>
-                          </div>
-                        )}
-
-                        {/* MAIN BUTTON */}
-                        {item.mainLink && (
-                          <Link
-                            href={item.mainLink.href}
-                            className="mt-4 inline-flex items-center justify-center gap-2 bg-linear-to-r from-blue-600 to-cyan-600 text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transition"
-                            onClick={() => setActive(null)}
-                          >
-                            {item.mainLink.name} <ChevronRight className="w-4 h-4" />
-                          </Link>
-                        )}
-                      </div>
-
-                      {/* RIGHT CONTENT */}
-                      <div className="w-2/3 grid grid-cols-3 gap-6 text-sm">
-                        {item.columns ? (
-                          item.columns.map((col) => (
-                            <div key={col.title}>
-                              <h4 className="text-base font-bold text-[#0072CE] mb-3">{col.title}</h4>
-                              <ul className="space-y-2">
-                                {col.items.map((sub) => (
-                                  <li key={sub.name}>
-                                    <Link
-                                      href={sub.href}
-                                      className="block py-1 text-gray-800 hover:text-[#0072CE] font-medium transition flex items-center gap-2 hover:translate-x-1"
-                                      onClick={() => setActive(null)}
-                                    >
-                                      <span className="w-2 h-2 bg-[#0072CE] rounded-full" />
-                                      {sub.name}
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))
-                        ) : item.items ? (
-                          <ul className="space-y-2">
-                            {item.items.map((sub) => (
-                              <li key={sub.name}>
-                                <Link
-                                  href={sub.href}
-                                  className="block py-1 text-gray-800 hover:text-[#0072CE] font-medium transition flex items-center gap-2 hover:translate-x-1"
-                                  onClick={() => setActive(null)}
-                                >
-                                  <span className="w-2 h-2 bg-[#0072CE] rounded-full" />
-                                  {sub.name}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        ) : null}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
+      {/* TOP BAR – چھوٹا، سمارٹ، بالکل WhalesMark جیسا */}
+      <div className="bg-[#0f172a] text-white text-xs">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-5 py-2.5">
+          {/* Left */}
+          <div className="flex items-center gap-3">
+            <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+            <span className="hidden lg:inline">Need Free Consultation?</span>
+            <button
+              onClick={() => setShowForm(true)}
+              className="underline underline-offset-2 hover:text-cyan-300 transition font-medium"
+            >
+              Book Schedule Now
+            </button>
           </div>
 
-          {/* MOBILE MENU BUTTON */}
+          {/* Right – Talk to Expert (پورا بٹن ہوور + کال) */}
+          <a
+            href="tel:+923351305062"
+            className="group flex items-center gap-3 bg-gradient-to-r from-[#1e40af] to-[#2563eb] px-7 py-2.5 rounded-full text-xs font-semibold hover:from-[#1e40af] hover:to-[#3b82f6] hover:shadow-xl hover:scale-105 transition-all duration-300"
+          >
+            <Phone className="w-4 h-4 text-cyan-300 group-hover:text-white transition" />
+            <div className="leading-tight">
+              <span className="block opacity-90 tracking-widest">TALK TO AN EXPERT!</span>
+              <span className="font-bold tracking-wider">+92 335 1305 062</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      {/* MAIN NAVBAR */}
+      <header className="sticky top-0 z-50 bg-white shadow-md">
+        <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between h-20">
+          {/* Logo */}
+          <Link href="/">
+            <Image
+              src="/logo.png"
+              alt="Ultracom Networks"
+              width={185}
+              height={60}
+              className="object-contain"
+              priority
+            />
+          </Link>
+
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex items-center gap-10 text-gray-700 font-medium text-[15px]">
+            <Link href="/" className="hover:text-cyan-600 transition font-semibold">
+              Home
+            </Link>
+
+            {/* Services */}
+            <div
+              className="relative"
+              onMouseEnter={() => setActiveDropdown("services")}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button className="flex items-center gap-1 hover:text-cyan-600 transition">
+                Services
+                <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === "services" ? "rotate-180" : ""}`} />
+              </button>
+
+              <AnimatePresence>
+                {activeDropdown === "services" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-[860px] bg-white rounded-2xl shadow-2xl border overflow-hidden z-50"
+                  >
+                    <div className="p-8 flex gap-10">
+                      <div className="w-5/12">
+                        <Image src="/services.webp" alt="Services" width={380} height={240} className="rounded-xl shadow-lg w-full" />
+                        <h3 className="text-xl font-bold text-gray-900 mt-5">Complete IT + Digital Solutions</h3>
+                        <p className="text-sm text-gray-600 mt-2">Connectivity, networking and digital growth solutions under one roof.</p>
+                        <Link href="/services" className="mt-4 inline-flex items-center text-cyan-600 font-semibold hover:underline">
+                          View All Services <ChevronRight className="w-4 h-4 ml-1" />
+                        </Link>
+                      </div>
+                      <div className="w-7/12 grid grid-cols-3 gap-8">
+                        {servicesColumns.map((col) => (
+                          <div key={col.title}>
+                            <h4 className="font-bold text-gray-900 mb-4">{col.title}</h4>
+                            <ul className="space-y-3">
+                              {col.items.map((item) => (
+                                <li key={item.name}>
+                                  <Link href={item.href} className="text-gray-600 hover:text-cyan-600 transition text-sm block">
+                                    {item.name}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <Link href="/business-spotlight" className="hover:text-cyan-600 transition">
+              Business Spotlight
+            </Link>
+
+            {/* About Us */}
+            <div
+              className="relative"
+              onMouseEnter={() => setActiveDropdown("about")}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button className="flex items-center gap-1 hover:text-cyan-600 transition">
+                About Us
+                <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdown === "about" ? "rotate-180" : ""}`} />
+              </button>
+
+              <AnimatePresence>
+                {activeDropdown === "about" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-[860px] bg-white rounded-2xl shadow-2xl border overflow-hidden z-50"
+                  >
+                    <div className="p-8 flex gap-10">
+                      <div className="w-5/12">
+                        <Image src="/aboutus.webp" alt="About" width={380} height={240} className="rounded-xl shadow-lg w-full" />
+                        <h3 className="text-xl font-bold text-gray-900 mt-5">About Ultracom Networks</h3>
+                        <p className="text-sm text-gray-600 mt-2">Trusted partner in connectivity & digital transformation.</p>
+                        <Link href="/aboutus" className="mt-4 inline-flex items-center text-cyan-600 font-semibold hover:underline">
+                          Company Overview <ChevronRight className="w-4 h-4 ml-1" />
+                        </Link>
+                      </div>
+                      <div className="w-7/12 grid grid-cols-3 gap-8">
+                        {aboutColumns.map((col) => (
+                          <div key={col.title}>
+                            <h4 className="font-bold text-gray-900 mb-4">{col.title}</h4>
+                            <ul className="space-y-3">
+                              {col.items.map((item) => (
+                                <li key={item.name}>
+                                  <Link href={item.href} className="text-gray-600 hover:text-cyan-600 transition text-sm block">
+                                    {item.name}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <Link href="/contactus" className="hover:text-cyan-600 transition">
+              Contact Us
+            </Link>
+
+            <Search className="w-5 h-5 text-gray-600 hover:text-cyan-600 cursor-pointer transition ml-4" />
+          </div>
+
+          {/* Mobile Menu Button */}
           <button onClick={() => setMobileOpen(true)} className="lg:hidden">
-            <Menu className="w-8 h-8 text-[#102b46]" />
+            <Menu className="w-7 h-7 text-gray-700" />
           </button>
         </nav>
       </header>
 
-      {/* MOBILE MENU */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            className="fixed inset-0 z-50 bg-white lg:hidden"
-          >
+          <motion.div initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} className="fixed inset-0 bg-white z-50 flex flex-col">
             <div className="flex justify-between items-center p-6 border-b">
-              <h3 className="text-2xl font-bold">Menu</h3>
+              <Image src="/logo.png" alt="Logo" width={160} height={50} />
               <button onClick={() => setMobileOpen(false)}>
-                <X className="w-8 h-8" />
+                <X className="w-8 h-8 text-gray-700" />
               </button>
             </div>
-            <div className="p-6 space-y-6 text-sm">
-              {menu.map((item, idx) => (
-                <div key={idx}>
-                  {item.href ? (
-                    <Link href={item.href} className="block text-lg font-medium py-3" onClick={() => setMobileOpen(false)}>
-                      {item.name}
-                    </Link>
-                  ) : (
-                    <details className="group">
-                      <summary className="flex justify-between items-center text-lg font-bold text-[#0072CE] cursor-pointer py-3">
-                        {item.name}
-                        <span className="group-open:rotate-180 transition">↓</span>
-                      </summary>
-                      <div className="mt-4 pl-6 space-y-3">
-                        {item.mainLink && (
-                          <Link href={item.mainLink.href} className="block font-bold text-[#0072CE] py-2" onClick={() => setMobileOpen(false)}>
-                            {item.mainLink.name} →
-                          </Link>
-                        )}
-                        {(item.items || item.columns?.flatMap(c => c.items))?.map((sub) => (
-                          <Link key={sub.name} href={sub.href} className="block py-2 text-gray-700" onClick={() => setMobileOpen(false)}>
-                            {sub.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </details>
-                  )}
-                </div>
-              ))}
+            <div className="p-8 space-y-6 text-lg font-medium text-gray-700">
+              <Link href="/" onClick={() => setMobileOpen(false)}>Home</Link>
+              <Link href="/services" onClick={() => setMobileOpen(false)}>Services</Link>
+              <Link href="/business-spotlight" onClick={() => setMobileOpen(false)}>Business Spotlight</Link>
+              <Link href="/aboutus" onClick={() => setMobileOpen(false)}>About Us</Link>
+              <Link href="/contactus" onClick={() => setMobileOpen(false)}>Contact Us</Link>
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Consultation Form Modal */}
+      <AnimatePresence>
+        {showForm && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4" onClick={() => setShowForm(false)}>
+            <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }} className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full relative" onClick={(e) => e.stopPropagation()}>
+              <button onClick={() => setShowForm(false)} className="absolute top-4 right-6">
+                <X className="w-6 h-6 text-gray-500 hover:text-gray-800" />
+              </button>
+              <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Book Free Consultation</h3>
+              <form className="space-y-4">
+                <input placeholder="Your Name" required className="w-full px-5 py-3 border border-gray-300 rounded-lg focus:border-cyan-600 focus:outline-none" />
+                <input type="email" placeholder="Email Address" required className="w-full px-5 py-3 border border-gray-300 rounded-lg focus:border-cyan-600" />
+                <input type="tel" placeholder="Phone Number" required className="w-full px-5 py-3 border border-gray-300 rounded-lg focus:border-cyan-600" />
+                <textarea placeholder="Your Message" rows={4} className="w-full px-5 py-3 border border-gray-300 rounded-lg focus:border-cyan-600"></textarea>
+                <button type="submit" className="w-full bg-gradient-to-r from-[#1e40af] to-cyan-600 text-white font-bold py-4 rounded-lg hover:shadow-xl transition">
+                  Submit Request
+                </button>
+              </form>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
