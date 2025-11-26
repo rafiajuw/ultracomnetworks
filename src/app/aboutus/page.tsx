@@ -32,11 +32,11 @@ export default function AboutUs() {
   //   { name: "Ayesha Malik", role: "Head of Sales" },
   // ];
 
-  const offices = [
-    { city: "Karachi (Head Office)", address: "Plot C-10/2, Shahrah-e-Faisal", phone: " +92 3111000929" },
-    { city: "Lahore", address: "Gulberg III, Main Boulevard", phone: " +92 3111000929" },
-    // { city: "Islamabad", address: "F-7 Markaz", phone: " +92 3111000929" },
-  ];
+  // const offices = [
+  //   { city: "Karachi (Head Office)", address: "Plot C-10/2, Shahrah-e-Faisal", phone: " +92 3111000929" },
+  //   { city: "Lahore", address: "Gulberg III, Main Boulevard", phone: " +92 3111000929" },
+  //   // { city: "Islamabad", address: "F-7 Markaz", phone: " +92 3111000929" },
+  // ];
 
   return (
     <>
@@ -212,7 +212,7 @@ export default function AboutUs() {
         </div>
       </section> */}
 
-      {/* ==== OFFICE LOCATIONS ==== */}
+      {/* ==== OFFICE LOCATIONS ====
       <section id="office-locations" className="py-24 md:py-32 bg-gray-50 font-poppins">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-4xl md:text-6xl font-bold text-center text-slate-800 mb-16">
@@ -235,7 +235,7 @@ export default function AboutUs() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ==== CTA ==== */}
       <section className="py-24 md:py-32 bg-gradient-to-r from-slate-800 to-blue-900 text-white text-center font-poppins">
