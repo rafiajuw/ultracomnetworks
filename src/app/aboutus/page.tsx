@@ -25,12 +25,12 @@ function useScrollToHash() {
 export default function AboutUs() {
   useScrollToHash();
 
-  const leaders = [
-    { name: "Muneeb Ali", role: "CEO & Founder" },
-    { name: "Zohaib Ahmed", role: "Chief Operating Officer" },
-    { name: "Omar Farooq", role: "Chief Technology Officer" },
-    { name: "Ayesha Malik", role: "Head of Sales" },
-  ];
+  // const leaders = [
+  //   { name: "Muneeb Ali", role: "CEO & Founder" },
+  //   { name: "Zohaib Ahmed", role: "Chief Operating Officer" },
+  //   { name: "Omar Farooq", role: "Chief Technology Officer" },
+  //   { name: "Ayesha Malik", role: "Head of Sales" },
+  // ];
 
   const offices = [
     { city: "Karachi (Head Office)", address: "Plot C-10/2, Shahrah-e-Faisal", phone: "+92 311 1000605" },
@@ -86,12 +86,12 @@ export default function AboutUs() {
               UltraCom Networks is Pakistan’s leading enterprise connectivity provider, delivering mission-critical internet, cloud, and managed IT infrastructure solutions.
             </p>
             <p className="text-base md:text-lg text-gray-500">
-              Founded in 2018, we proudly serve over <strong className="text-slate-700">500+ enterprises</strong> including banks, multinationals, universities, and government institutions with <strong className="text-slate-700">99.99% uptime</strong> and dedicated 24/7 local support.
+              Founded in 2020, we proudly serve over <strong className="text-slate-700">100+ enterprises</strong> including banks, multinationals, universities, and government institutions with <strong className="text-slate-700">99.99% uptime</strong> and dedicated 24/7 local support.
             </p>
 
             <div className="grid grid-cols-2 gap-8 mt-12">
               <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center">
-                <h3 className="text-5xl font-bold text-slate-800">500+</h3>
+                <h3 className="text-5xl font-bold text-slate-800">100+</h3>
                 <p className="text-gray-600 mt-2">Enterprise Clients</p>
               </div>
               <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-center">
@@ -183,7 +183,7 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* ==== LEADERSHIP ==== */}
+      {/* ==== LEADERSHIP ====
       <section id="leadership" className="py-24 md:py-32 bg-white font-poppins">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-4xl md:text-6xl font-bold text-center text-slate-800 mb-16">
@@ -210,7 +210,7 @@ export default function AboutUs() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ==== OFFICE LOCATIONS ==== */}
       <section id="office-locations" className="py-24 md:py-32 bg-gray-50 font-poppins">
