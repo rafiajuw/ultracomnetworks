@@ -14,7 +14,7 @@ export default function NetworkSupport() {
         "Automated alerts & issue resolution",
         "Monthly health reports & optimization",
       ]}
-      heroImage="/services/network-support.jpg"
+      heroImage="/mock-devices.jpg"
     />
   );
 }

@@ -14,7 +14,7 @@ export default function Consultation() {
         "Cost optimization analysis",
         "Roadmap & budget planning",
       ]}
-      heroImage="/services/consultation.jpg"
+      heroImage="/consult.png"
       ctaText="Book Free Audit"
     />
   );

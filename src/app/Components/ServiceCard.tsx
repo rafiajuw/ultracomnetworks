@@ -1,4 +1,3 @@
-// src/components/ServiceCard.tsx
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Download, ChevronRight } from "lucide-react";
@@ -11,46 +10,109 @@ interface ServiceCardProps {
   category: string;
 }
 
-export default function ServiceCard({ title, subtitle, href, pdf, category }: ServiceCardProps) {
+export default function ServiceCard({
+  title,
+  subtitle,
+  href,
+  pdf,
+  category,
+}: ServiceCardProps) {
   return (
     <motion.div
-      whileHover={{ y: -8, scale: 1.02 }}
-      transition={{ duration: 0.3 }}
-      className="group block p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-ultracom-primary"
+      whileHover={{ y: -10 }}
+      transition={{ duration: 0.35, ease: "easeOut" }}
+      className="
+        group relative p-8 rounded-3xl bg-white/90 
+        shadow-[0_8px_30px_rgb(0,0,0,0.06)] 
+        border border-gray-100 backdrop-blur-xl 
+        overflow-hidden transition-all duration-500
+      "
     >
-      <div className="flex items-start justify-between mb-4">
-        <div className="space-y-2">
-          <h3 className="text-xl font-bold text-ultracom-dark group-hover:text-ultracom-primary transition-colors">
-            {title}
-          </h3>
-          <p className="text-gray-600 text-sm">{subtitle}</p>
-          <span className="inline-block px-3 py-1 text-xs font-medium bg-ultracom-primary/10 text-ultracom-primary rounded-full">
-            {category}
-          </span>
-        </div>
-        <div className="w-12 h-12 bg-ultracom-primary/10 rounded-full flex items-center justify-center group-hover:bg-ultracom-primary transition-colors">
-          <ChevronRight className="w-6 h-6 text-ultracom-primary group-hover:text-white transition-colors" />
-        </div>
-      </div>
+      {/* Gradient Glow Border */}
+      <div
+        className="
+          absolute inset-0 rounded-3xl border-2 opacity-0 
+          group-hover:opacity-100 group-hover:border-transparent 
+          transition duration-500
+          bg-gradient-to-br from-cyan-500/60 to-blue-600/60
+          pointer-events-none
+        "
+      />
 
-      <div className="flex items-center justify-between mt-6">
-        <Link
-          href={href}
-          className="text-ultracom-primary font-medium text-sm flex items-center group-hover:translate-x-1 transition-transform"
-        >
-          Learn more
-          <ChevronRight className="w-4 h-4 ml-1" />
-        </Link>
-        {pdf && (
-          <a
-            href={pdf}
-            download
-            className="text-gray-500 hover:text-ultracom-primary transition-colors"
-            title="Download Brochure"
+      {/* Inner White Mask for Soft Glow */}
+      <div className="absolute inset-[2px] rounded-3xl bg-white/90 backdrop-blur-xl pointer-events-none" />
+
+      <div className="relative z-10">
+        {/* Title + Subtitle + Badge */}
+        <div className="flex items-start justify-between mb-6">
+          <div className="space-y-2">
+            <h3
+              className="
+                text-2xl font-bold text-gray-900 
+                group-hover:text-cyan-600 
+                transition-colors duration-300
+              "
+            >
+              {title}
+            </h3>
+
+            <p className="text-gray-600 text-sm leading-relaxed">
+              {subtitle}
+            </p>
+
+            <span
+              className="
+                inline-block px-4 py-1 text-xs font-semibold 
+                bg-cyan-600/10 text-cyan-700 
+                rounded-full tracking-wide
+              "
+            >
+              {category}
+            </span>
+          </div>
+
+          {/* Icon Circle */}
+          <motion.div
+            whileHover={{ scale: 1.15 }}
+            className="
+              w-12 h-12 rounded-2xl flex items-center justify-center
+              bg-cyan-600/10 text-cyan-600
+              group-hover:bg-cyan-600 group-hover:text-white 
+              transition-all duration-300 shadow-sm
+            "
           >
-            <Download className="w-5 h-5" />
-          </a>
-        )}
+            <ChevronRight className="w-6 h-6" />
+          </motion.div>
+        </div>
+
+        {/* Bottom Row: CTA + PDF Download */}
+        <div className="flex items-center justify-between mt-8">
+          <Link
+            href={href}
+            className="
+              flex items-center gap-1 text-sm font-semibold 
+              text-cyan-600 group-hover:text-blue-700 
+              transition-all duration-300
+            "
+          >
+            Learn More
+            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
+
+          {pdf && (
+            <a
+              href={pdf}
+              download
+              className="
+                text-gray-500 hover:text-cyan-600 
+                transition-colors duration-300
+              "
+              title="Download Service Brochure"
+            >
+              <Download className="w-5 h-5" />
+            </a>
+          )}
+        </div>
       </div>
     </motion.div>
   );

@@ -13,7 +13,7 @@ export default function CloudWifi() {
         "Load balancing & roaming",
         "PCI compliance ready",
       ]}
-      heroImage="/services/cloud-wifi.jpg"
+      heroImage="/cloudwifi.jpeg"
     />
   );
 }

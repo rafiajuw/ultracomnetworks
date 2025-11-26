@@ -14,7 +14,7 @@ export default function CallCenter() {
         "CRM integration (Salesforce, Zoho)",
         "Omnichannel: voice, chat, email",
       ]}
-      heroImage="/services/call-center.jpg"
+      heroImage="/call-center.jpeg"
     />
   );
 }

@@ -13,7 +13,7 @@ export default function InternetService() {
         "DDoS protection included",
         "Priority support & failover",
       ]}
-      heroImage="/services/internet.jpg"
+      heroImage="/internet.jpeg"
     />
   );
 }

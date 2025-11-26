@@ -14,7 +14,7 @@ export default function DataCenter() {
         "Biometric access & CCTV",
         "Remote hands 24/7",
       ]}
-      heroImage="/services/data-center.jpg"
+      heroImage="/datacenter.jpeg"
     />
   );
 }

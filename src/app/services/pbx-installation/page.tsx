@@ -14,7 +14,7 @@ export default function PBXInstallation() {
         "On-site installation & testing",
         "Staff training & documentation",
       ]}
-      heroImage="/services/pbx.jpg"
+      heroImage="/call.webp"
     />
   );
 }

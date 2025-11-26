@@ -13,7 +13,7 @@ export default function LanWan() {
         "Zero-downtime migration",
         "Documentation & training",
       ]}
-      heroImage="/services/lan-wan.jpg"
+      heroImage="/lanwan.jpeg"
     />
   );
 }
