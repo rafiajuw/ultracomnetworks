@@ -19,7 +19,7 @@ export default function ServicePage({
   features,
   heroImage,
   ctaText = "Get a Quote",
-  ctaLink = "/contact",
+  ctaLink = "/contactus",
 }: ServicePageProps) {
   return (
     <>
@@ -64,7 +64,7 @@ export default function ServicePage({
             Contact us for pricing, demo, or on-site assessment.
           </p>
           <a
-            href="/contact"
+            href="/contactus"
             className="inline-flex items-center justify-center px-8 py-4 bg-white text-ultracom-dark font-bold text-lg rounded-full shadow-xl hover:shadow-2xl transition-all"
           >
             Contact Us Now
