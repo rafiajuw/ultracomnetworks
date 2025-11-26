@@ -85,13 +85,13 @@ export default function Navbar() {
 
           {/* Right – Talk to Expert (پورا بٹن ہوور + کال) */}
           <a
-            href="tel:+923351305062"
+            href="tel:+923111000929"
             className="group flex items-center gap-3 bg-gradient-to-r from-[#1e40af] to-[#2563eb] px-7 py-2.5 rounded-full text-xs font-semibold hover:from-[#1e40af] hover:to-[#3b82f6] hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
             <Phone className="w-4 h-4 text-cyan-300 group-hover:text-white transition" />
             <div className="leading-tight">
               <span className="block opacity-90 tracking-widest">TALK TO AN EXPERT!</span>
-              <span className="font-bold tracking-wider">+92 335 1305 062</span>
+              <span className="font-bold tracking-wider">92.311.1000929</span>
             </div>
           </a>
         </div>
