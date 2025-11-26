@@ -5,6 +5,11 @@ import BackToServices from "./BackToServices";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
+interface ExtraSection {
+  heading: string;
+  points: string[];
+}
+
 interface ServicePageProps {
   title: string;
   subtitle: string;
@@ -13,6 +18,7 @@ interface ServicePageProps {
   heroImage: string;
   ctaText?: string;
   ctaLink?: string;
+  extraSections?: ExtraSection[]; // <-- NEW
 }
 
 export default function ServicePage({
@@ -23,6 +29,7 @@ export default function ServicePage({
   heroImage,
   ctaText = "Get a Quote",
   ctaLink = "/contactus",
+  extraSections = [], // <-- DEFAULT VALUE
 }: ServicePageProps) {
   return (
     <>
@@ -82,33 +89,60 @@ export default function ServicePage({
         </div>
       </section>
 
-     {/* FINAL CTA */}
-<section className="py-24 bg-gradient-to-r from-ultracom-dark to-ultracom-primary text-blue-950 relative overflow-hidden">
-  <div className="absolute inset-0 bg-white/10 blur-3xl opacity-20"></div>
+      {/* EXTRA SECTIONS */}
+      {extraSections.length > 0 && (
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-6 space-y-16">
 
-  <div className="max-w-3xl mx-auto text-center px-6 relative z-10">
-    <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight drop-shadow">
-      Ready to Deploy?
-    </h2>
+            {extraSections.map((section, idx) => (
+              <div key={idx}>
+                <h3 className="text-3xl font-bold text-[#0f172a] mb-6 tracking-tight">
+                  {section.heading}
+                </h3>
 
-    <p className="text-xl mb-12 text-blue-300 leading-relaxed">
-      Contact us for pricing, a custom quote, or a site survey.
-    </p>
+                <ul className="space-y-4">
+                  {section.points.map((point, i) => (
+                    <li
+                      key={i}
+                      className="p-5 bg-[#f8fafc] border border-gray-200 rounded-xl text-gray-700 text-lg shadow-sm"
+                    >
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
 
-    <Link href="/contactus">
-      <motion.button
-        whileHover={{ scale: 1.07 }}
-        whileTap={{ scale: 0.97 }}
-        className="inline-flex items-center justify-center px-12 py-4 text-lg 
-        font-bold rounded-full bg-white text-ultracom-dark shadow-2xl 
-        hover:shadow-ultracom-glow transition-all"
-      >
-        {ctaText}
-      </motion.button>
-    </Link>
-  </div>
-</section>
+          </div>
+        </section>
+      )}
 
+      {/* FINAL CTA */}
+      <section className="py-24 bg-gradient-to-r from-ultracom-dark to-ultracom-primary text-blue-950 relative overflow-hidden">
+        <div className="absolute inset-0 bg-white/10 blur-3xl opacity-20"></div>
+
+        <div className="max-w-3xl mx-auto text-center px-6 relative z-10">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight drop-shadow">
+            Ready to Deploy?
+          </h2>
+
+          <p className="text-xl mb-12 text-blue-300 leading-relaxed">
+            Contact us for pricing, a custom quote, or a site survey.
+          </p>
+
+          <Link href={ctaLink}>
+            <motion.button
+              whileHover={{ scale: 1.07 }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center justify-center px-12 py-4 text-lg 
+              font-bold rounded-full bg-white text-ultracom-dark shadow-2xl 
+              hover:shadow-ultracom-glow transition-all"
+            >
+              {ctaText}
+            </motion.button>
+          </Link>
+        </div>
+      </section>
     </>
   );
 }

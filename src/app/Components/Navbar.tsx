@@ -27,15 +27,17 @@ export default function Navbar() {
         { name: "Network Support", href: "/services/network-support" },
         { name: "Data Center", href: "/services/data-center" },
         { name: "Consultation", href: "/services/consultation" },
+        { name: "call center", href: "/services/call-center" },
       ],
     },
     {
       title: "Digital",
       items: [
-        { name: "Website Development", href: "/webdevlopment2#website" },
-        { name: "Social Media Marketing", href: "/webdevlopment2#Social" },
-        { name: "Logo & Branding", href: "/webdevlopment2#Brand" },
-        { name: "Web Services", href: "/services/web-services" },
+        { name: "Website Development", href: "/services/webdevlopment2" },
+        { name: "Social Media Marketing", href: "/services/social-media-marketing" },
+        { name: "Logo & Branding", href: "/services/branding" },
+        { name: "seo Services", href: "/services/seo" },
+        { name: "content creation", href: "/services/content" },
       ],
     },
   ];
