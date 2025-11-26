@@ -7,7 +7,7 @@ export default function WhatsAppButton() {
   const [isHovered, setIsHovered] = useState(false);
 
   // Replace with your real number
-  const phoneNumber = "923351305062"; // Format: 92XXXXXXXXXX
+  const phoneNumber = "923111000929"; // Format: 92XXXXXXXXXX
   const message = "Hello UltraCom Networks! I need IT solutions for my business.";
 
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;

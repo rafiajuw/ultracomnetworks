@@ -14,8 +14,8 @@ export default function TopBar() {
           <button onClick={() => setOpen(true)} className="underline hover:text-gray-200 transition">
             Schedule a meeting
           </button>
-          <a href="tel:+1-212-360-2370" className="underline hover:text-gray-200 transition">
-            +1-212-360-2370
+          <a href="tel:+92 3111000929" className="underline hover:text-gray-200 transition">
+            +92 3111000929
           </a>
         </div>
       </div>
