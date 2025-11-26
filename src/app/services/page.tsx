@@ -200,7 +200,7 @@ export default function ServicesPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link
-              href="/contact"
+              href="/contactus"
               className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-12 py-6 rounded-full text-xl font-bold shadow-2xl hover:scale-105 transition transform"
             >
               Free Consultation
