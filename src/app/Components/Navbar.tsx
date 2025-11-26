@@ -91,7 +91,7 @@ export default function Navbar() {
             <Phone className="w-4 h-4 text-cyan-300 group-hover:text-white transition" />
             <div className="leading-tight">
               <span className="block opacity-90 tracking-widest">TALK TO AN EXPERT!</span>
-              <span className="font-bold tracking-wider">92.311.1000929</span>
+              <span className="font-bold tracking-wider">+92 3111000929</span>
             </div>
           </a>
         </div>
