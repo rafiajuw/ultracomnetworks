@@ -45,10 +45,10 @@ export default function ServiceHero({
               {ctaText}
             </Link>
             <a
-              href="tel:+92311-1000939"
+              href="tel:+92311-1000929"
               className="border border-blue-600 text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 hover:scale-105 transition-all duration-300"
             >
-              Call Now: +92 311 1000605
+              Call Now: +92 311-1000929
             </a>
           </div>
         </div>
