@@ -36,7 +36,7 @@ export default function Branding() {
   return (
     <div className="w-full">
       <div className="relative w-full h-[55vh] md:h-[70vh]">
-        <img src="/branding.jpeg" alt="Branding & Identity" className="w-full h-full object-cover" />
+        <img src="/branding.jpg" alt="Branding & Identity" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/60" />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
           <h1 className="text-4xl md:text-6xl font-bold text-white drop-shadow-lg">
