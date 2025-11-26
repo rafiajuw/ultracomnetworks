@@ -33,9 +33,9 @@ export default function AboutUs() {
   // ];
 
   const offices = [
-    { city: "Karachi (Head Office)", address: "Plot C-10/2, Shahrah-e-Faisal", phone: "+92 311 1000605" },
-    { city: "Lahore", address: "Gulberg III, Main Boulevard", phone: "+92 311 1000605" },
-    { city: "Islamabad", address: "F-7 Markaz", phone: "+92 311 1000605" },
+    { city: "Karachi (Head Office)", address: "Plot C-10/2, Shahrah-e-Faisal", phone: " +92 3111000929" },
+    { city: "Lahore", address: "Gulberg III, Main Boulevard", phone: " +92 3111000929" },
+    // { city: "Islamabad", address: "F-7 Markaz", phone: " +92 3111000929" },
   ];
 
   return (
