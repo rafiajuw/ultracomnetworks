@@ -52,7 +52,7 @@ const services = [
 export default function PremiumServices() {
   return (
     <section className="py-28 bg-[#f1f5f9] relative">
-      {/* Soft Background Glow */}
+
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-200/40 via-transparent to-blue-200/30 blur-3xl" />
 
       <div className="text-center max-w-5xl mx-auto px-6 mb-20 relative">
@@ -95,50 +95,48 @@ export default function PremiumServices() {
         >
           {services.map((service, i) => (
             <SwiperSlide key={i}>
-              <motion.div
-                whileHover={{ y: -8, rotateX: 4, rotateY: -4 }}
-                className="group relative backdrop-blur-xl bg-white/60 border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-3xl overflow-hidden transition-all duration-700"
-              >
-                {/* Image Layer */}
-                <div className="relative h-64">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-all duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+              
+              {/* ⭐ Entire card is now a Link */}
+              <Link href={service.href} className="block group">
 
-                  <span className="absolute top-6 left-6 text-sm px-4 py-2 rounded-full font-semibold bg-white/10 backdrop-blur-md text-white border border-white/20 shadow-lg">
-                    {service.badge}
-                  </span>
-                </div>
+                <motion.div
+                  whileHover={{ y: -8, rotateX: 4, rotateY: -4 }}
+                  className="relative backdrop-blur-xl bg-white/60 border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-3xl overflow-hidden transition-all duration-700"
+                >
 
-                {/* Content */}
-                <div className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900">{service.title}</h3>
-                  <p className="text-gray-600 mt-3 text-lg leading-relaxed">
-                    {service.desc}
-                  </p>
+                  <div className="relative h-64">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-all duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
-                  <Link
-                    href={service.href}
-                    className="mt-8 inline-flex items-center gap-2 text-lg font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all"
-                  >
-                    Explore Service
-                    <ArrowRight className="w-5 h-5" />
-                  </Link>
-                </div>
+                    <span className="absolute top-6 left-6 text-sm px-4 py-2 rounded-full font-semibold bg-white/10 backdrop-blur-md text-white border border-white/20 shadow-lg">
+                      {service.badge}
+                    </span>
+                  </div>
 
-                {/* Glow Border */}
-                <div className="absolute inset-0 rounded-3xl border border-transparent group-hover:border-cyan-400/60 transition-all duration-500 shadow-[0_0_25px_rgba(6,182,212,0.35)] opacity-0 group-hover:opacity-100" />
-              </motion.div>
+                  <div className="p-8">
+                    <h3 className="text-2xl font-bold text-gray-900">{service.title}</h3>
+                    <p className="text-gray-600 mt-3 text-lg leading-relaxed">
+                      {service.desc}
+                    </p>
+
+                    <div className="mt-8 inline-flex items-center gap-2 text-lg font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-3 rounded-full shadow-lg transition-all">
+                      Explore Service
+                      <ArrowRight className="w-5 h-5" />
+                    </div>
+                  </div>
+
+                </motion.div>
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
-      {/* Custom Pagination */}
       <style jsx global>{`
         .swiper-pagination-bullet {
           background: #cbd5e1 !important;

@@ -27,7 +27,7 @@ export default function Navbar() {
         { name: "Network Support", href: "/services/network-support" },
         { name: "Data Center", href: "/services/data-center" },
         { name: "Consultation", href: "/services/consultation" },
-        { name: "call center", href: "/services/call-center" },
+        { name: "Call Center", href: "/services/call-center" },
       ],
     },
     {
@@ -36,8 +36,8 @@ export default function Navbar() {
         { name: "Website Development", href: "/services/webdevlopment2" },
         { name: "Social Media Marketing", href: "/services/social-media-marketing" },
         { name: "Logo & Branding", href: "/services/branding" },
-        { name: "seo Services", href: "/services/seo" },
-        { name: "content creation", href: "/services/content" },
+        { name: "Seo Services", href: "/services/seo" },
+        { name: "Content Creation", href: "/services/content" },
       ],
     },
   ];
