@@ -122,7 +122,7 @@ export default function ContactPage() {
             <div className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl shadow-lg border border-blue-100 text-center">
               <Mail className="w-12 h-12 text-blue-600 mx-auto mb-4" />
               <h3 className="text-xl font-bold text-blue-900 mb-3">Contact Sales</h3>
-              <p className="text-gray-600 text-sm">sales@ultracom.net<br />+92 3111000929</p>
+              <p className="text-gray-600 text-sm">sales@ultracomnetworks.pk<br />+92 3111000929</p>
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl shadow-lg border border-blue-100 text-center">
               <MessageSquare className="w-12 h-12 text-blue-600 mx-auto mb-4" />
@@ -132,7 +132,7 @@ export default function ContactPage() {
             <div className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl shadow-lg border border-blue-100 text-center">
               <Phone className="w-12 h-12 text-blue-600 mx-auto mb-4" />
               <h3 className="text-xl font-bold text-blue-900 mb-3">Technical Support</h3>
-              <p className="text-gray-600 text-sm">+92 3111000929<br />+92 3111000929 </p>
+              <p className="text-gray-600 text-sm">+92 3111000929<br />+92 3111000939 </p>
             </div>
           </div>
         </div>

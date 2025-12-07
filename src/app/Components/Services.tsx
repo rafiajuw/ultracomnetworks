@@ -1,153 +1,124 @@
 "use client";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
-
-import "swiper/css";
-import "swiper/css/pagination";
-
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 
-const services = [
-  {
-    title: "High-Speed Internet",
-    desc: "Fiber optic connectivity designed for business reliability with guaranteed uptime.",
-    href: "/services/internet",
-    image: "/internet.jpeg",
-    badge: "Connectivity",
-  },
-  {
-    title: "Enterprise LAN / WAN",
-    desc: "Secure and scalable enterprise-grade networking solutions for modern businesses.",
-    href: "/services/lan-wan",
-    image: "/lanwan.jpeg",
-    badge: "Infrastructure",
-  },
-  {
-    title: "Cloud WiFi Solutions",
-    desc: "Cloud-managed WiFi with advanced analytics and seamless roaming.",
-    href: "/services/cloud-wifi",
-    image: "/cloudwifi.jpeg",
-    badge: "Smart WiFi",
-  },
-  {
-    title: "24/7 Network Support",
-    desc: "NOC monitoring, on-site engineers & proactive maintenance.",
-    href: "/services/network-support",
-    image: "/itsupport.jpeg",
-    badge: "Support",
-  },
-  {
-    title: "Data Center Services",
-    desc: "Tier-3 colocation, private racks, redundancy & disaster recovery.",
-    href: "/services/data-center",
-    image: "/datacenter.jpeg",
-    badge: "Data Center",
-  },
+interface Service {
+  title: string;
+  subtitle: string;
+  href: string;
+  category: string;
+  pdf?: string;
+  image: string;
+}
+
+const allServices: Service[] = [
+  // IT & Network
+  { title: "Dedicated Internet", subtitle: "High-speed fiber internet", href: "/services/internet", category: "connectivity", image: "/internet.jpeg" },
+  { title: "LAN & WAN Networking", subtitle: "Enterprise network deployment", href: "/services/lan-wan", category: "infrastructure", image: "/lanwan.jpeg" },
+  { title: "Cloud WiFi Solution", subtitle: "Smart managed WiFi systems", href: "/services/cloud-wifi", category: "connectivity", image: "/webdevlopment2.jpg" },
+  { title: "Network Support", subtitle: "24/7 monitoring & engineers", href: "/services/network-support", category: "infrastructure", image: "/internet.jpeg" },
+  { title: "Data Center Services", subtitle: "Secure colocation & hosting", href: "/services/data-center", category: "infrastructure", image: "/datacenter.jpeg" },
+  { title: "Call Center Solutions", subtitle: "PBX, IVR, omnichannel", href: "/services/call-center", category: "voice", image: "/callcenter.jpeg" },
+  { title: "PBX Installation", subtitle: "Hybrid & on-prem systems", href: "/services/pbx-installation", category: "voice", image: "/mock-device.jpg" },
+  { title: "IT Consultation", subtitle: "Professional IT roadmap", href: "/services/consultation", category: "consulting", image: "/consult.jpeg" },
+
+  // Web Services
+  { title: "Website Development", subtitle: "High-end modern websites", href: "/services/web-development", category: "web", image: "/webdevlopment.jpeg" },
+  { title: "SEO Services", subtitle: "Rank higher on Google", href: "/services/seo", category: "web", image: "/seo.jpeg" },
+  { title: "Branding & Identity", subtitle: "Logo + brand kits", href: "/services/branding", category: "web", image: "/branding.jpg" },
+  { title: "Content Creation", subtitle: "Professional media content", href: "/services/content", category: "web", image: "/content.jpeg" },
+  { title: "Social Media Marketing", subtitle: "Grow your online brand", href: "/services/social-media", category: "web", image: "/socialmedia.jpg" },
 ];
 
-export default function PremiumServices() {
+export default function ServicesPage() {
   return (
-    <section className="py-28 bg-[#f1f5f9] relative">
+    <div className="relative py-24 bg-[#021130] text-white overflow-hidden">
 
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-200/40 via-transparent to-blue-200/30 blur-3xl" />
+      {/* 🔥 Background Glow Effects */}
+      <div className="absolute inset-0 bg-gradient-to-b from-cyan-400/5 via-transparent to-blue-700/10 blur-2xl" />
+      <div className="absolute -top-20 -left-10 w-[400px] h-[400px] bg-cyan-500/10 blur-[120px]" />
+      <div className="absolute bottom-0 right-0 w-[350px] h-[350px] bg-blue-600/10 blur-[120px]" />
 
-      <div className="text-center max-w-5xl mx-auto px-6 mb-20 relative">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-5xl md:text-6xl font-bold text-[#0f172a]"
-        >
-          Our
-          <span className="block bg-gradient-to-r from-cyan-500 to-blue-600 bg-clip-text text-transparent">
-            Premium IT Solutions
-          </span>
-        </motion.h2>
+      <h1 className="text-center text-5xl md:text-6xl font-extrabold mb-16 tracking-tight">
+        Our
+        <span className="block mt-2 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(0,255,255,0.3)]">
+          Premium Services
+        </span>
+      </h1>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="text-xl text-gray-600 mt-6 leading-relaxed"
-        >
-          Designed for performance, reliability and enterprise-grade scalability.
-        </motion.p>
-      </div>
+      {/* ⚡ Horizontal Slider */}
+      <div className="overflow-x-auto scrollbar-hide select-none">
+        <div className="flex gap-8 min-w-max px-10 pb-6">
 
-      <div className="max-w-7xl mx-auto px-6 relative">
-        <Swiper
-          modules={[Autoplay, Pagination]}
-          spaceBetween={40}
-          slidesPerView={1.2}
-          loop
-          autoplay={{ delay: 2600 }}
-          pagination={{ clickable: true }}
-          breakpoints={{
-            640: { slidesPerView: 1.4 },
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-            1400: { slidesPerView: 3.2 },
-          }}
-        >
-          {services.map((service, i) => (
-            <SwiperSlide key={i}>
-              
-              {/* ⭐ Entire card is now a Link */}
-              <Link href={service.href} className="block group">
+          {allServices.map((service, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.05 }}
+              whileHover={{ scale: 1.06, rotateY: 6, rotateX: -3 }}
+              className="
+              group relative w-80 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-xl 
+              overflow-hidden shadow-[0_0_20px_rgba(0,0,0,0.3)] hover:shadow-[0_0_40px_rgba(0,200,255,0.3)]
+              transition-all duration-500"
+            >
 
-                <motion.div
-                  whileHover={{ y: -8, rotateX: 4, rotateY: -4 }}
-                  className="relative backdrop-blur-xl bg-white/60 border border-white/40 shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-3xl overflow-hidden transition-all duration-700"
-                >
+              {/* 🔥 Image */}
+              <div className="relative h-52 overflow-hidden">
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  fill
+                  className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:blur-[2px]"
+                />
 
-                  <div className="relative h-64">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-all duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/60" />
+              </div>
 
-                    <span className="absolute top-6 left-6 text-sm px-4 py-2 rounded-full font-semibold bg-white/10 backdrop-blur-md text-white border border-white/20 shadow-lg">
-                      {service.badge}
-                    </span>
-                  </div>
+              {/* Content */}
+              <div className="p-6">
+                <h3 className="text-2xl font-bold text-white tracking-wide drop-shadow-lg">
+                  {service.title}
+                </h3>
 
-                  <div className="p-8">
-                    <h3 className="text-2xl font-bold text-gray-900">{service.title}</h3>
-                    <p className="text-gray-600 mt-3 text-lg leading-relaxed">
-                      {service.desc}
-                    </p>
+                <p className="text-gray-300 text-sm mt-2 leading-relaxed">
+                  {service.subtitle}
+                </p>
 
-                    <div className="mt-8 inline-flex items-center gap-2 text-lg font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-3 rounded-full shadow-lg transition-all">
-                      Explore Service
-                      <ArrowRight className="w-5 h-5" />
-                    </div>
-                  </div>
+                {/* Buttons */}
+                <div className="mt-6 flex items-center gap-3">
+                  <Link
+                    href={service.href}
+                    className="
+                    px-5 py-2.5 rounded-xl font-semibold 
+                    bg-gradient-to-r from-cyan-500 to-blue-600
+                    hover:from-cyan-400 hover:to-blue-500
+                    shadow-lg hover:shadow-cyan-500/30 transition-all"
+                  >
+                    Explore
+                  </Link>
 
-                </motion.div>
-              </Link>
-            </SwiperSlide>
+                  {service.pdf && (
+                    <a
+                      href={service.pdf}
+                      target="_blank"
+                      className="
+                      px-5 py-2.5 rounded-xl border border-white/20  
+                      hover:bg-white hover:text-black transition-all"
+                    >
+                      PDF
+                    </a>
+                  )}
+                </div>
+              </div>
+
+            </motion.div>
           ))}
-        </Swiper>
+        </div>
       </div>
-
-      <style jsx global>{`
-        .swiper-pagination-bullet {
-          background: #cbd5e1 !important;
-          width: 12px;
-          height: 12px;
-        }
-        .swiper-pagination-bullet-active {
-          background: linear-gradient(to right, #06b6d4, #3b82f6) !important;
-          transform: scale(1.3);
-        }
-      `}</style>
-    </section>
+    </div>
   );
 }

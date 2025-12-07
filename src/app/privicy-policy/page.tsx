@@ -27,7 +27,7 @@ export default function PrivacyPolicy() {
 
         <section>
           <h2 className="text-3xl font-bold text-slate-800 mb-4">Contact Us</h2>
-          <p>Email: <a href="mailto:privacy@ultracom.net" className="text-blue-600">privacy@ultracom.net</a></p>
+          <p>Email: <a href="mailto:privacy@ultracom.net" className="text-blue-600">abuse@ultracomnetworks.pk</a></p>
         </section>
       </div>
     </div>

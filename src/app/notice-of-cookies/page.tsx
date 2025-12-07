@@ -22,7 +22,7 @@ export default function NoticeOfCookies() {
 
         <section>
           <h2 className="text-3xl font-bold text-slate-800 mb-4">Manage Cookies</h2>
-          <p>Disable in browser settings. Contact: <a href="mailto:privacy@ultracom.net" className="text-blue-600">privacy@ultracom.net</a></p>
+          <p>Disable in browser settings. Contact: <a href="mailto:abuse@ultracomnetworks.pk" className="text-blue-600">abuse@ultracomnetworks.pk</a></p>
         </section>
       </div>
     </div>
