@@ -13,7 +13,7 @@ export default function EmailMarketing() {
       </div>
 
       <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
-        How We Make $30K/Month with Email Marketing (Real Case Study)
+        How We Make 30K/Month with Email Marketing (Real Case Study)
       </h1>
       <p className="text-gray-500 mb-12 text-lg">November 3, 2025 • 7 min read</p>
 

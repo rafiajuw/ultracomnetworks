@@ -23,7 +23,7 @@ export default function AcceptableUsePolicy() {
 
         <section>
           <h2 className="text-3xl font-bold text-slate-800 mb-4">Contact</h2>
-          <p>Report abuse: <a href="mailto:abuse@ultracom.net" className="text-blue-600">abuse@ultracom.net</a></p>
+          <p>Report abuse: <a href="mailto:abuse@ultracomnetworks.pk" className="text-blue-600">abuse@ultracomnetworks.pk</a></p>
         </section>
       </div>
     </div>
