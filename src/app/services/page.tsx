@@ -28,21 +28,21 @@ export default function ServicesPage() {
 
   const allServices: Service[] = [
     // Existing IT/Network services
-    { title: "Dedicated Internet", subtitle: "High-speed fiber internet with SLA", href: "/services/internet", category: "connectivity", pdf: "/pdfs/internet.pdf", image: "/internet.jpeg" },
+    { title: "Dedicated Internet", subtitle: "High-speed fiber internet with SLA", href: "/services/internet", category: "connectivity", image: "/internet.jpeg" },
     { title: "LAN & WAN Networking", subtitle: "Enterprise network design & deployment", href: "/services/lan-wan", category: "infrastructure", image: "/lanwan.jpeg" },
     { title: "Cloud WiFi Solution", subtitle: "Managed cloud WiFi with analytics", href: "/services/cloud-wifi", category: "connectivity", image: "/cloudwifi.jpeg" },
-    { title: "Network Support", subtitle: "24/7 NOC & certified engineers", href: "/services/network-support", category: "infrastructure", pdf: "/pdfs/network-support.pdf", image: "/internet.jpeg" },
+    { title: "Network Support", subtitle: "24/7 NOC & certified engineers", href: "/services/network-support", category: "infrastructure",image: "/internet.jpeg" },
     { title: "Data Center Services", subtitle: "Colocation & secure hosting", href: "/services/data-center", category: "infrastructure", image: "/datacenter.jpeg" },
-    { title: "Call Center Solutions", subtitle: "Cloud PBX, IVR & omnichannel", href: "/services/call-center", category: "voice", pdf: "/pdfs/call-center.pdf", image: "/callcenter.jpeg" },
+    { title: "Call Center Solutions", subtitle: "Cloud PBX, IVR & omnichannel", href: "/services/call-center", category: "voice", image: "/callcenter.jpeg" },
     { title: "PBX Installation", subtitle: "On-premise & hybrid PBX setup", href: "/services/pbx-installation", category: "voice", image: "/mock-device.jpg" },
-    { title: "IT Consultation", subtitle: "Free assessment & roadmap", href: "/services/consultation", category: "consulting", pdf: "/pdfs/consultation.pdf", image: "/consult.jpeg" },
+    { title: "IT Consultation", subtitle: "Free assessment & roadmap", href: "/services/consultation", category: "consulting",  image: "/consult.png" },
 
     // New Web & Digital Services
-    { title: "Website Development", subtitle: "Professional websites for your business", href: "/services/web-development", category: "web", image: "/web-dev.jpeg" },
-    { title: "SEO Services", subtitle: "Improve your website's ranking on Google", href: "/services/seo", category: "web", image: "/seo.jpeg" },
-    { title: "Branding & Identity", subtitle: "Logo, colors, and brand strategy", href: "/services/branding", category: "web", image: "/branding.jpeg" },
+    { title: "Website Development", subtitle: "Professional websites for your business", href: "/services/web-development", category: "web", image: "/webdevlopment.jpeg" },
+    { title: "SEO Services", subtitle: "Improve your website's ranking on Google", href: "/services/seo", category: "web", image: "/seo.webp" },
+    { title: "Branding & Identity", subtitle: "Logo, colors, and brand strategy", href: "/services/branding", category: "web", image: "/branding.jpg" },
     { title: "Content Creation", subtitle: "High-quality content for web & social media", href: "/services/content", category: "web", image: "/content.jpeg" },
-    { title: "Social Media Marketing", subtitle: "Grow your business online", href: "/services/social-media", category: "web", image: "/socialmedia.jpeg" },
+    { title: "Social Media Marketing", subtitle: "Grow your business online", href: "/services/social-media", category: "web", image: "/socialmedia.jpg" },
   ];
 
   const filteredServices = useMemo(() => {
