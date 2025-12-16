@@ -30,7 +30,7 @@ export default function UltracomTestimonials() {
       role: "IT Manager",
       company: "TechVision Solutions",
       text: "Ultracom Networks has been a game changer for our office. Stable 300 Mbps enterprise connectivity + fast support. Our entire IT operations run smoothly.",
-      avatar: "/clients/b1.jpg",
+      avatar: "/clients/b1.webp",
       service: "Enterprise Internet"
     },
     {
@@ -38,7 +38,7 @@ export default function UltracomTestimonials() {
       role: "Marketing Lead",
       company: "Beauty Glow",
       text: "Ultracom developed our website with a premium design, stunning animations & lightning speed. Sales doubled within weeks!",
-      avatar: "/clients/w1.jpg",
+      avatar: "/clients/r1.webp",
       service: "Website Development"
     },
     {
@@ -46,7 +46,7 @@ export default function UltracomTestimonials() {
       role: "Freelancer",
       company: "Upwork & Fiverr",
       text: "Stable internet is EVERYTHING for my remote work. Zero downtime, zero lag — just smooth productivity.",
-      avatar: "/clients/r1.jpg",
+      avatar: "/clients/r2.webp",
       service: "Home Internet"
     },
     {
@@ -54,7 +54,7 @@ export default function UltracomTestimonials() {
       role: "Clinic Owner",
       company: "Qureshi Dental Care",
       text: "From digital records to HD video calls, Ultracom’s fiber internet helped our clinic shift to fully digital workflow.",
-      avatar: "/clients/b2.jpg",
+      avatar: "/clients/b2.webp",
       service: "Business Internet"
     },
     {
