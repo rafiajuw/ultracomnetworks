@@ -62,7 +62,7 @@ export default function UltracomTestimonials() {
       role: "CEO",
       company: "Tariq Traders",
       text: "Ultracom built our complete ecommerce website — fast, secure & highly converting. Best dev team we’ve worked with.",
-      avatar: "/clients/w2.jpg",
+      avatar: "/clients/b1.webp",
       service: "Web Development"
     },
   ];
