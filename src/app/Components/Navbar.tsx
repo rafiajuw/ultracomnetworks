@@ -70,10 +70,9 @@ export default function Navbar() {
 
   return (
     <>
-      {/* TOP BAR – چھوٹا، سمارٹ، بالکل WhalesMark جیسا */}
+      {/* TOP BAR */}
       <div className="bg-[#0f172a] text-white text-xs">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-5 py-2.5">
-          {/* Left */}
           <div className="flex items-center gap-3">
             <Calendar className="w-3.5 h-3.5 text-cyan-400" />
             <span className="hidden lg:inline">Need Free Consultation?</span>
@@ -85,7 +84,6 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Right – Talk to Expert (پورا بٹن ہوور + کال) */}
           <a
             href="tel:+923111000929"
             className="group flex items-center gap-3 bg-gradient-to-r from-[#1e40af] to-[#2563eb] px-7 py-2.5 rounded-full text-xs font-semibold hover:from-[#1e40af] hover:to-[#3b82f6] hover:shadow-xl hover:scale-105 transition-all duration-300"
@@ -120,7 +118,7 @@ export default function Navbar() {
               Home
             </Link>
 
-            {/* Services */}
+            {/* Services Dropdown */}
             <div
               className="relative"
               onMouseEnter={() => setActiveDropdown("services")}
@@ -174,7 +172,7 @@ export default function Navbar() {
               Business Spotlight
             </Link>
 
-            {/* About Us */}
+            {/* About Us Dropdown */}
             <div
               className="relative"
               onMouseEnter={() => setActiveDropdown("about")}
@@ -231,39 +229,136 @@ export default function Navbar() {
             <Search className="w-5 h-5 text-gray-600 hover:text-cyan-600 cursor-pointer transition ml-4" />
           </div>
 
-          {/* Mobile Menu Button */}
-          <button onClick={() => setMobileOpen(true)} className="lg:hidden">
-            <Menu className="w-7 h-7 text-gray-700" />
+          {/* Mobile Hamburger Button */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="lg:hidden relative z-50"
+            aria-label="Toggle menu"
+          >
+            <motion.div
+              className="relative w-7 h-7"
+              animate={mobileOpen ? "open" : "closed"}
+            >
+              {/* Top line → rotates to +45° */}
+              <motion.span
+                className="absolute h-0.5 w-7 bg-gray-800 rounded"
+                style={{ top: "12px", left: "0px" }}
+                variants={{
+                  closed: { rotate: 0, translateY: 0 },
+                  open: { rotate: 45, translateY: 0 },
+                }}
+              />
+              {/* Middle line → fades out */}
+              <motion.span
+                className="absolute h-0.5 w-7 bg-gray-800 rounded"
+                style={{ top: "20px", left: "0px" }}
+                variants={{
+                  closed: { opacity: 1 },
+                  open: { opacity: 0 },
+                }}
+              />
+              {/* Bottom line → rotates to -45° and moves up */}
+              <motion.span
+                className="absolute h-0.5 w-7 bg-gray-800 rounded"
+                style={{ top: "28px", left: "0px" }}
+                variants={{
+                  closed: { rotate: 0, translateY: 0 },
+                  open: { rotate: -45, translateY: "-8px" }, // ← Fixed: wrapped in quotes
+                }}
+              />
+            </motion.div>
           </button>
         </nav>
       </header>
 
-      {/* Mobile Menu */}
+      {/* Professional Mobile Menu (Slide from Right with Overlay) */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} className="fixed inset-0 bg-white z-50 flex flex-col">
-            <div className="flex justify-between items-center p-6 border-b">
-              <Image src="/logo.png" alt="Logo" width={160} height={50} />
-              <button onClick={() => setMobileOpen(false)}>
-                <X className="w-8 h-8 text-gray-700" />
-              </button>
-            </div>
-            <div className="p-8 space-y-6 text-lg font-medium text-gray-700">
-              <Link href="/" onClick={() => setMobileOpen(false)}>Home</Link>
-              <Link href="/services" onClick={() => setMobileOpen(false)}>Services</Link>
-              <Link href="/blog" onClick={() => setMobileOpen(false)}>Business Spotlight</Link>
-              <Link href="/aboutus" onClick={() => setMobileOpen(false)}>About Us</Link>
-              <Link href="/contactus" onClick={() => setMobileOpen(false)}>Contact Us</Link>
-            </div>
-          </motion.div>
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileOpen(false)}
+              className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+            />
+
+            {/* Sidebar Drawer */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="fixed right-0 top-0 h-full w-80 bg-white shadow-2xl z-50 overflow-y-auto lg:hidden"
+            >
+              <div className="flex flex-col h-full">
+                {/* Header */}
+                <div className="flex items-center justify-between p-6 border-b">
+                  <Image src="/logo.png" alt="Ultracom Networks" width={160} height={50} className="object-contain" />
+                  <button onClick={() => setMobileOpen(false)} className="p-2">
+                    <X className="w-7 h-7 text-gray-700" />
+                  </button>
+                </div>
+
+                {/* Navigation Links */}
+                <nav className="flex-1 px-8 py-10 space-y-8 text-lg font-medium text-gray-800">
+                  <Link href="/" onClick={() => setMobileOpen(false)} className="block hover:text-cyan-600 transition">
+                    Home
+                  </Link>
+                  <Link href="/services" onClick={() => setMobileOpen(false)} className="block hover:text-cyan-600 transition">
+                    Services
+                  </Link>
+                  <Link href="/blog" onClick={() => setMobileOpen(false)} className="block hover:text-cyan-600 transition">
+                    Business Spotlight
+                  </Link>
+                  <Link href="/aboutus" onClick={() => setMobileOpen(false)} className="block hover:text-cyan-600 transition">
+                    About Us
+                  </Link>
+                  <Link href="/contactus" onClick={() => setMobileOpen(false)} className="block hover:text-cyan-600 transition">
+                    Contact Us
+                  </Link>
+
+                  {/* Call to Action in Mobile Menu */}
+                  <div className="pt-8 border-t">
+                    <a
+                      href="tel:+923111000929"
+                      className="flex items-center gap-3 text-cyan-600 font-bold"
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <Phone className="w-5 h-5" />
+                      +92 3111000929
+                    </a>
+                  </div>
+                </nav>
+
+                {/* Footer (optional) */}
+                <div className="p-8 border-t bg-gray-50 text-sm text-gray-600">
+                  <p>© 2025 Ultracom Networks. All rights reserved.</p>
+                </div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
 
       {/* Consultation Form Modal */}
       <AnimatePresence>
         {showForm && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4" onClick={() => setShowForm(false)}>
-            <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} exit={{ scale: 0.9 }} className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full relative" onClick={(e) => e.stopPropagation()}>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4"
+            onClick={() => setShowForm(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full relative"
+              onClick={(e) => e.stopPropagation()}
+            >
               <button onClick={() => setShowForm(false)} className="absolute top-4 right-6">
                 <X className="w-6 h-6 text-gray-500 hover:text-gray-800" />
               </button>
