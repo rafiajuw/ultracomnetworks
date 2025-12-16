@@ -10,6 +10,7 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<null | "services" | "about">(null);
   const [showForm, setShowForm] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openAccordion, setOpenAccordion] = useState<null | "services" | "about">(null);
 
   // Services Dropdown Data
   const servicesColumns = [
@@ -229,49 +230,46 @@ export default function Navbar() {
             <Search className="w-5 h-5 text-gray-600 hover:text-cyan-600 cursor-pointer transition ml-4" />
           </div>
 
-          {/* Mobile Hamburger Button */}
+          {/* Enhanced Mobile Hamburger Button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden relative z-50"
+            className="lg:hidden relative z-50 p-2"
             aria-label="Toggle menu"
           >
             <motion.div
-              className="relative w-7 h-7"
+              className="relative w-8 h-8 flex flex-col justify-center items-center gap-1.5"
               animate={mobileOpen ? "open" : "closed"}
             >
-              {/* Top line → rotates to +45° */}
               <motion.span
-                className="absolute h-0.5 w-7 bg-gray-800 rounded"
-                style={{ top: "12px", left: "0px" }}
+                className="w-8 h-1 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-full origin-center"
                 variants={{
                   closed: { rotate: 0, translateY: 0 },
-                  open: { rotate: 45, translateY: 0 },
+                  open: { rotate: 45, translateY: 8 },
                 }}
+                transition={{ duration: 0.3 }}
               />
-              {/* Middle line → fades out */}
               <motion.span
-                className="absolute h-0.5 w-7 bg-gray-800 rounded"
-                style={{ top: "20px", left: "0px" }}
+                className="w-8 h-1 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-full"
                 variants={{
                   closed: { opacity: 1 },
                   open: { opacity: 0 },
                 }}
+                transition={{ duration: 0.2 }}
               />
-              {/* Bottom line → rotates to -45° and moves up */}
               <motion.span
-                className="absolute h-0.5 w-7 bg-gray-800 rounded"
-                style={{ top: "28px", left: "0px" }}
+                className="w-8 h-1 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-full origin-center"
                 variants={{
                   closed: { rotate: 0, translateY: 0 },
-                  open: { rotate: -45, translateY: "-8px" }, // ← Fixed: wrapped in quotes
+                  open: { rotate: -45, translateY: -8 },
                 }}
+                transition={{ duration: 0.3 }}
               />
             </motion.div>
           </button>
         </nav>
       </header>
 
-      {/* Professional Mobile Menu (Slide from Right with Overlay) */}
+      {/* Enhanced Mobile Sidebar with Accordions */}
       <AnimatePresence>
         {mobileOpen && (
           <>
@@ -281,7 +279,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobileOpen(false)}
-              className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+              className="fixed inset-0 bg-black/60 z-40 lg:hidden"
             />
 
             {/* Sidebar Drawer */}
@@ -289,52 +287,138 @@ export default function Navbar() {
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed right-0 top-0 h-full w-80 bg-white shadow-2xl z-50 overflow-y-auto lg:hidden"
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="fixed right-0 top-0 h-full w-11/12 max-w-md bg-white shadow-2xl z-50 overflow-y-auto lg:hidden"
             >
-              <div className="flex flex-col h-full">
+              <div className="flex flex-col h-full bg-gradient-to-b from-white to-gray-50">
                 {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b">
-                  <Image src="/logo.png" alt="Ultracom Networks" width={160} height={50} className="object-contain" />
-                  <button onClick={() => setMobileOpen(false)} className="p-2">
-                    <X className="w-7 h-7 text-gray-700" />
+                <div className="flex items-center justify-between p-6 border-b bg-gradient-to-r from-cyan-600 to-blue-700 text-white">
+                  <Image src="/logo.png" alt="Ultracom Networks" width={160} height={50} className="object-contain brightness-0 invert" />
+                  <button onClick={() => setMobileOpen(false)} className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition">
+                    <X className="w-7 h-7" />
                   </button>
                 </div>
 
-                {/* Navigation Links */}
-                <nav className="flex-1 px-8 py-10 space-y-8 text-lg font-medium text-gray-800">
-                  <Link href="/" onClick={() => setMobileOpen(false)} className="block hover:text-cyan-600 transition">
+                {/* Navigation with Accordions */}
+                <nav className="flex-1 px-6 py-8 space-y-4">
+                  <Link href="/" onClick={() => setMobileOpen(false)} className="block py-4 text-lg font-semibold text-gray-800 hover:text-cyan-600 transition border-b">
                     Home
                   </Link>
-                  <Link href="/services" onClick={() => setMobileOpen(false)} className="block hover:text-cyan-600 transition">
-                    Services
-                  </Link>
-                  <Link href="/blog" onClick={() => setMobileOpen(false)} className="block hover:text-cyan-600 transition">
+
+                  {/* Services Accordion */}
+                  <div>
+                    <button
+                      onClick={() => setOpenAccordion(openAccordion === "services" ? null : "services")}
+                      className="w-full flex items-center justify-between py-4 text-lg font-semibold text-gray-800 hover:text-cyan-600 transition"
+                    >
+                      Services
+                      <motion.div animate={{ rotate: openAccordion === "services" ? 180 : 0 }}>
+                        <ChevronDown className="w-5 h-5" />
+                      </motion.div>
+                    </button>
+                    <AnimatePresence>
+                      {openAccordion === "services" && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pb-6 space-y-6">
+                            {servicesColumns.map((col) => (
+                              <div key={col.title}>
+                                <h4 className="font-bold text-cyan-600 mb-3">{col.title}</h4>
+                                <ul className="space-y-3">
+                                  {col.items.map((item) => (
+                                    <li key={item.name}>
+                                      <Link
+                                        href={item.href}
+                                        onClick={() => setMobileOpen(false)}
+                                        className="block text-gray-600 hover:text-cyan-600 transition"
+                                      >
+                                        {item.name}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  <Link href="/blog" onClick={() => setMobileOpen(false)} className="block py-4 text-lg font-semibold text-gray-800 hover:text-cyan-600 transition border-b">
                     Business Spotlight
                   </Link>
-                  <Link href="/aboutus" onClick={() => setMobileOpen(false)} className="block hover:text-cyan-600 transition">
-                    About Us
-                  </Link>
-                  <Link href="/contactus" onClick={() => setMobileOpen(false)} className="block hover:text-cyan-600 transition">
+
+                  {/* About Us Accordion */}
+                  <div>
+                    <button
+                      onClick={() => setOpenAccordion(openAccordion === "about" ? null : "about")}
+                      className="w-full flex items-center justify-between py-4 text-lg font-semibold text-gray-800 hover:text-cyan-600 transition"
+                    >
+                      About Us
+                      <motion.div animate={{ rotate: openAccordion === "about" ? 180 : 0 }}>
+                        <ChevronDown className="w-5 h-5" />
+                      </motion.div>
+                    </button>
+                    <AnimatePresence>
+                      {openAccordion === "about" && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pb-6 space-y-6">
+                            {aboutColumns.map((col) => (
+                              <div key={col.title}>
+                                <h4 className="font-bold text-cyan-600 mb-3">{col.title}</h4>
+                                <ul className="space-y-3">
+                                  {col.items.map((item) => (
+                                    <li key={item.name}>
+                                      <Link
+                                        href={item.href}
+                                        onClick={() => setMobileOpen(false)}
+                                        className="block text-gray-600 hover:text-cyan-600 transition"
+                                      >
+                                        {item.name}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  <Link href="/contactus" onClick={() => setMobileOpen(false)} className="block py-4 text-lg font-semibold text-gray-800 hover:text-cyan-600 transition border-b">
                     Contact Us
                   </Link>
 
-                  {/* Call to Action in Mobile Menu */}
-                  <div className="pt-8 border-t">
+                  {/* CTA */}
+                  <div className="pt-8">
                     <a
                       href="tel:+923111000929"
-                      className="flex items-center gap-3 text-cyan-600 font-bold"
+                      className="flex items-center justify-center gap-3 bg-gradient-to-r from-cyan-600 to-blue-700 text-white font-bold py-4 rounded-xl hover:shadow-xl transition"
                       onClick={() => setMobileOpen(false)}
                     >
-                      <Phone className="w-5 h-5" />
-                      +92 3111000929
+                      <Phone className="w-6 h-6" />
+                      Call Now: +92 3111000929
                     </a>
                   </div>
                 </nav>
 
-                {/* Footer (optional) */}
-                <div className="p-8 border-t bg-gray-50 text-sm text-gray-600">
-                  <p>© 2025 Ultracom Networks. All rights reserved.</p>
+                {/* Footer */}
+                <div className="p-6 border-t text-center text-sm text-gray-500">
+                  © 2025 Ultracom Networks. All rights reserved.
                 </div>
               </div>
             </motion.div>
