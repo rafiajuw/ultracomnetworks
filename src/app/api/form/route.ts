@@ -16,6 +16,13 @@ const transporter = nodemailer.createTransport({
   socketTimeout: 60000,
 });
 
+console.log("Email Config:", {
+  host: process.env.EMAIL_HOST,
+  port: process.env.EMAIL_PORT,
+  user: process.env.EMAIL_USER,
+  pass: process.env.EMAIL_PASS ? "***hidden***" : "NOT SET",
+});
+
 export async function POST(req: Request) {
   try {
     const contentType = req.headers.get("content-type") || "";
@@ -42,9 +49,9 @@ export async function POST(req: Request) {
 
       const resumeBuffer = Buffer.from(await resume.arrayBuffer());
 
-      await transporter.sendMail({
+      const resumeResult = await transporter.sendMail({
         from: `"Career Form" <${process.env.EMAIL_USER}>`,
-        to: process.env.EMAIL_USER,
+        to: process.env.RECIPIENT_EMAIL || process.env.EMAIL_USER,
         replyTo: email,
         subject: `Job Application: ${name} (${position})`,
         html: `
@@ -63,6 +70,9 @@ export async function POST(req: Request) {
           },
         ],
       });
+
+      console.log("✅ Career email sent to:", process.env.RECIPIENT_EMAIL || process.env.EMAIL_USER);
+      console.log("Message ID:", resumeResult.messageId);
 
       return NextResponse.json({ message: "Application sent successfully!" });
     }
@@ -85,9 +95,9 @@ export async function POST(req: Request) {
       ? `Appointment Request: ${service} - ${name}`
       : `Website Inquiry from ${name}`;
 
-    await transporter.sendMail({
+    const mailResult = await transporter.sendMail({
       from: `"Website Form" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_USER,
+      to: process.env.RECIPIENT_EMAIL || process.env.EMAIL_USER,
       replyTo: email,
       subject,
       html: `
@@ -101,11 +111,24 @@ export async function POST(req: Request) {
       `,
     });
 
+    console.log("✅ Email sent successfully to:", process.env.RECIPIENT_EMAIL || process.env.EMAIL_USER);
+    console.log("Message ID:", mailResult.messageId);
+
     return NextResponse.json({ message: "Message sent successfully!" });
   } catch (error: any) {
-    console.error("Mail Error:", error.message);
+    console.error("❌ Mail Error:", {
+      message: error.message,
+      code: error.code,
+      command: error.command,
+      response: error.response,
+      responseCode: error.responseCode
+    });
+    
     return NextResponse.json(
-      { error: "Failed to send email. Please try again later." },
+      { 
+        error: "Failed to send email. Please try again later.",
+        details: error.message 
+      },
       { status: 500 }
     );
   }

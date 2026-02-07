@@ -92,28 +92,28 @@ export default function Hero() {
             transition={{ duration: 0.8 }}
             className="space-y-6 text-white max-w-xl"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold leading-tight tracking-tight">
               {slides[current].title}
             </h1>
-            <p className="text-base sm:text-lg text-blue-100 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-blue-100 leading-relaxed tracking-wide max-w-2xl">
               {slides[current].subtitle}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mt-4">
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <motion.a
                 href="/services"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center justify-center px-8 py-3.5 bg-cyan-600 text-white font-semibold text-base rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center justify-center px-8 py-4 bg-cyan-600 text-white font-bold text-base rounded-lg shadow-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 group border border-cyan-500/50 hover:border-cyan-400"
               >
                 {slides[current].cta1}
-                <ChevronRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.a>
               <motion.a
                 href="/contact"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center justify-center px-8 py-3.5 border-2 border-white text-white font-semibold text-base rounded-full backdrop-blur-sm hover:bg-white/10 transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-bold text-base rounded-lg backdrop-blur-sm hover:bg-white/10 transition-all duration-300"
               >
                 {slides[current].cta2}
               </motion.a>

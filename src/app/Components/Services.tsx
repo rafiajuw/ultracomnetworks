@@ -53,14 +53,14 @@ export default function ServicesCarousel() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Heading */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-7xl font-extrabold">
+        <div className="text-center mb-20">
+          <h1 className="text-6xl md:text-7xl font-extrabold tracking-tight">
             Our
             <span className="block mt-3 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
               Premium Services
             </span>
           </h1>
-          <p className="mt-6 text-lg text-cyan-100/80">Explore all solutions with smooth sliding</p>
+          <p className="mt-6 text-lg md:text-xl text-cyan-100/80 tracking-wide max-w-3xl mx-auto">Explore all solutions with smooth sliding</p>
         </div>
 
         {/* Carousel */}
@@ -87,32 +87,32 @@ export default function ServicesCarousel() {
                   `}
                 >
                   <motion.div
-                    whileHover={{ y: -12, scale: 1.03 }}
-                    className="group relative bg-white/5 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-xl h-[520px] shadow-2xl hover:shadow-cyan-500/30 transition-all duration-500"
+                    whileHover={{ y: -16, scale: 1.04 }}
+                    className="group relative bg-white/5 border border-white/15 rounded-2xl overflow-hidden backdrop-blur-xl h-[520px] shadow-2xl hover:shadow-2xl hover:shadow-cyan-500/40 transition-all duration-500"
                   >
                     <div className="relative h-64 overflow-hidden">
                       <Image
                         src={service.image}
                         alt={service.title}
                         fill
-                        className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                      <span className="absolute top-4 left-4 px-4 py-1.5 text-xs font-bold bg-cyan-500/30 text-cyan-200 rounded-full backdrop-blur border border-cyan-400/40">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                      <span className="absolute top-4 left-4 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-cyan-300 bg-cyan-500/20 rounded-md backdrop-blur border border-cyan-400/40">
                         {service.category.toUpperCase()}
                       </span>
                     </div>
 
-                    <div className="p-8">
-                      <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
-                      <p className="text-gray-300 mb-8">{service.subtitle}</p>
+                    <div className="p-8 flex flex-col h-full">
+                      <h3 className="text-2xl font-bold mb-2 tracking-tight">{service.title}</h3>
+                      <p className="text-gray-300 mb-8 text-sm md:text-base leading-relaxed">{service.subtitle}</p>
 
                       <Link
                         href={service.href}
-                        className="inline-flex items-center gap-3 px-7 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full font-bold hover:from-cyan-400 hover:to-blue-500 hover:shadow-lg hover:shadow-cyan-500/50 transition-all"
+                        className="mt-auto inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg font-bold text-base hover:from-cyan-400 hover:to-blue-500 hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 border border-cyan-400/30 hover:border-cyan-300/50"
                       >
                         Explore
-                        <ArrowRight className="w-5 h-5" />
+                        <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                       </Link>
                     </div>
                   </motion.div>

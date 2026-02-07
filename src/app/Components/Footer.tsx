@@ -1,119 +1,300 @@
-// src/app/Components/Footer.tsx
 import Link from "next/link";
+import { 
+  Mail, 
+  Phone, 
+  MapPin, 
+  Globe, 
+  Shield,
+  Award,
+  Zap,
+  ChevronRight,
+  Send,
+  ArrowRight,
+  Linkedin,
+  Twitter,
+  Facebook,
+  Instagram
+} from "lucide-react";
+import Image from "next/image";
+import ClientFooter from "./ClientFooter";
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="border-t border-slate-200 py-12 font-geist-sans bg-white">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <footer className="relative overflow-hidden bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white pt-20 pb-12 font-geist-sans">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundSize: '40px 40px'
+        }}></div>
+      </div>
+
+      {/* Decorative Elements */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500"></div>
+      <div className="absolute top-20 left-1/4 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl"></div>
+
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         
-        {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-16">
           
-          {/* Who We Are */}
-          <div>
-            <h3 className="text-sm font-bold text-blue-900 uppercase tracking-widest mb-4">
-              WHO WE ARE
-            </h3>
-            <nav className="space-y-3 text-base text-slate-700">
-              <Link
-                href="/aboutus"
-                className="block hover:text-blue-900 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-blue-900 after:transition-all after:duration-300 hover:after:w-full"
-              >
-                About us
+          {/* Company Info Column */}
+          <div className="lg:col-span-2">
+            <div className="mb-8">
+              <Link href="/" className="inline-block">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="relative">
+                    <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-2xl blur-xl"></div>
+                    <Image
+                      src="/logo.png"
+                      alt="Ultracom Networks"
+                      width={180}
+                      height={60}
+                      className="relative object-contain filter brightness-0 invert"
+                    />
+                  </div>
+                  <div className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text">
+                    <h2 className="text-2xl font-bold tracking-tight">Ultracom Networks</h2>
+                    <p className="text-sm text-slate-300">Enterprise IT Solutions</p>
+                  </div>
+                </div>
               </Link>
-              <Link
-                href="/our-networks"
-                className="block hover:text-blue-900 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-blue-900 after:transition-all after:duration-300 hover:after:w-full"
-              >
-                Our network
-              </Link>
-              <Link
-                href="/our-location"
-                className="block hover:text-blue-900 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-blue-900 after:transition-all after:duration-300 hover:after:w-full"
-              >
-                Office locations
-              </Link>
-              <Link
-                href="/career"
-                className="block hover:text-blue-900 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-blue-900 after:transition-all after:duration-300 hover:after:w-full"
-              >
-                Careers
-              </Link>
-            </nav>
+              
+              <p className="text-slate-300 leading-relaxed mb-8 max-w-xl">
+                Leading provider of enterprise-grade connectivity, network infrastructure, 
+                and digital transformation solutions. Empowering businesses across Pakistan 
+                with reliable, scalable, and secure IT services.
+              </p>
+
+              {/* Contact Info */}
+              <div className="space-y-4 mb-8">
+                <a 
+                  href="tel:+923111000929" 
+                  className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors group"
+                >
+                  <div className="p-2 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-lg group-hover:from-cyan-500/20 group-hover:to-blue-500/20 transition-all">
+                    <Phone className="w-4 h-4 text-cyan-400" />
+                  </div>
+                  <span className="font-medium">+92 311 1000929</span>
+                </a>
+                <a 
+                  href="mailto:info@ultracomnetworks.com" 
+                  className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors group"
+                >
+                  <div className="p-2 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-lg group-hover:from-cyan-500/20 group-hover:to-blue-500/20 transition-all">
+                    <Mail className="w-4 h-4 text-cyan-400" />
+                  </div>
+                  <span className="font-medium">info@ultracomnetworks.com</span>
+                </a>
+                <div className="flex items-center gap-3 text-slate-300 group">
+                  <div className="p-2 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-lg">
+                    <MapPin className="w-4 h-4 text-cyan-400" />
+                  </div>
+                  <span className="font-medium">Lahore, Pakistan HQ</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Newsletter Subscription */}
+            <div className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50">
+              <h3 className="text-lg font-bold mb-3 flex items-center gap-2">
+                <Send className="w-5 h-5 text-cyan-400" />
+                Stay Updated
+              </h3>
+              <p className="text-sm text-slate-300 mb-4">
+                Subscribe to our newsletter for the latest in IT solutions and industry insights.
+              </p>
+              
+              {/* Use Client Component for form */}
+              <ClientFooter />
+            </div>
           </div>
 
-          {/* Legal */}
-          <div>
-            <h3 className="text-sm font-bold text-blue-900 uppercase tracking-widest mb-4">
-              LEGAL
-            </h3>
-            <nav className="space-y-3 text-base text-slate-700">
-              <Link
-                href="/privicy-policy"
-                className="block hover:text-blue-900 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-blue-900 after:transition-all after:duration-300 hover:after:w-full"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/accectable-policy"
-                className="block hover:text-blue-900 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-blue-900 after:transition-all after:duration-300 hover:after:w-full"
-              >
-                Acceptable Use Policy
-              </Link>
-              <Link
-                href="/notice-of-cookies"
-                className="block hover:text-blue-900 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-blue-900 after:transition-all after:duration-300 hover:after:w-full"
-              >
-                Notice of Cookies
-              </Link>
-            </nav>
+          {/* Quick Links Grid */}
+          <div className="grid grid-cols-2 gap-8">
+            {/* Services Column */}
+            <div>
+              <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
+                <Zap className="w-4 h-4 text-cyan-400" />
+                SERVICES
+              </h3>
+              <nav className="space-y-4">
+                {[
+                  { name: "Internet Solutions", href: "/services/internet" },
+                  { name: "Network Infrastructure", href: "/services/lan-wan" },
+                  { name: "Cloud Services", href: "/services/cloud-wifi" },
+                  { name: "Digital Marketing", href: "/services/social-media-marketing" },
+                  { name: "Web Development", href: "/services/webdevlopment2" },
+                ].map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className="group flex items-center text-slate-300 hover:text-white transition-all duration-300"
+                  >
+                    <ChevronRight className="w-3 h-3 mr-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="font-medium hover:translate-x-1 transition-transform">
+                      {link.name}
+                    </span>
+                  </Link>
+                ))}
+              </nav>
+            </div>
+
+            {/* Company Column */}
+            <div>
+              <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
+                <Globe className="w-4 h-4 text-cyan-400" />
+                COMPANY
+              </h3>
+              <nav className="space-y-4">
+                {[
+                  { name: "About Us", href: "/aboutus" },
+                  { name: "Our Network", href: "/our-networks" },
+                  { name: "Locations", href: "/our-location" },
+                  { name: "Careers", href: "/career" },
+                  { name: "Partners", href: "/partners" },
+                ].map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className="group flex items-center text-slate-300 hover:text-white transition-all duration-300"
+                  >
+                    <ChevronRight className="w-3 h-3 mr-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="font-medium hover:translate-x-1 transition-transform">
+                      {link.name}
+                    </span>
+                  </Link>
+                ))}
+              </nav>
+            </div>
           </div>
 
-          {/* Follow Us */}
+          {/* Legal & Social Column */}
           <div>
-            <h3 className="text-sm font-bold text-blue-900 uppercase tracking-widest mb-4">
-              FOLLOW US
-            </h3>
-            <nav className="space-y-3 text-base text-slate-700">
-              <Link 
-                href="https://linkedin.com/company/ultracomnetworks" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="block hover:text-blue-900 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-blue-900 after:transition-all after:duration-300 hover:after:w-full"
-              >
-                LinkedIn
-              </Link>
-              {/* <Link 
-                href="https://youtube.com/@ultracomnetworks" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="block hover:text-blue-900 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-blue-900 after:transition-all after:duration-300 hover:after:w-full"
-              >
-                YouTube
-              </Link>
-              <Link 
-                href="https://x.com/ultracomnet" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="block hover:text-blue-900 transition-colors duration-300 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-blue-900 after:transition-all after:duration-300 hover:after:w-full"
-              >
-                X (Twitter)
-              </Link> */}
-            </nav>
+            {/* Legal Section */}
+            <div className="mb-10">
+              <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
+                <Shield className="w-4 h-4 text-cyan-400" />
+                LEGAL
+              </h3>
+              <nav className="space-y-4">
+                {[
+                  { name: "Privacy Policy", href: "/privacy-policy" },
+                  { name: "Acceptable Use Policy", href: "/acceptable-policy" },
+                  { name: "Cookie Notice", href: "/notice-of-cookies" },
+                  { name: "Terms of Service", href: "/terms" },
+                  { name: "Compliance", href: "/compliance" },
+                ].map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className="group flex items-center text-slate-300 hover:text-white transition-all duration-300"
+                  >
+                    <ChevronRight className="w-3 h-3 mr-2 text-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="font-medium hover:translate-x-1 transition-transform">
+                      {link.name}
+                    </span>
+                  </Link>
+                ))}
+              </nav>
+            </div>
+
+            {/* Social Media */}
+            <div>
+              <h3 className="text-sm font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
+                <div className="w-4 h-4 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full"></div>
+                CONNECT WITH US
+              </h3>
+              <div className="flex items-center gap-4">
+                {[
+                  { icon: Linkedin, href: "https://linkedin.com/company/ultracomnetworks", color: "hover:bg-blue-600" },
+                  { icon: Twitter, href: "https://twitter.com/ultracomnetworks", color: "hover:bg-sky-500" },
+                  { icon: Facebook, href: "https://facebook.com/ultracomnetworks", color: "hover:bg-blue-700" },
+                  { icon: Instagram, href: "https://instagram.com/ultracomnetworks", color: "hover:bg-pink-600" },
+                ].map((social) => (
+                  <a
+                    key={social.href}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`group p-3 bg-slate-800/50 backdrop-blur-sm rounded-xl border border-slate-700/50 ${social.color} hover:scale-110 hover:shadow-lg transition-all duration-300`}
+                  >
+                    <social.icon className="w-5 h-5 text-slate-300 group-hover:text-white transition-colors" />
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-slate-600">
-          <p className="text-center md:text-left">
-            © Copyright 2025 - Ultracom Networks Corporation - All Rights Reserved
-          </p>
+        {/* Trust Badges */}
+        <div className="mb-12">
+          <div className="flex flex-wrap items-center justify-center gap-8 p-6 bg-gradient-to-r from-slate-800/30 to-slate-900/30 backdrop-blur-sm rounded-2xl border border-slate-700/30">
+            <div className="flex items-center gap-3">
+              <Award className="w-6 h-6 text-cyan-400" />
+              <div>
+                <div className="font-bold">ISO 27001 Certified</div>
+                <div className="text-sm text-slate-400">Information Security</div>
+              </div>
+            </div>
+            <div className="h-8 w-px bg-slate-700"></div>
+            <div className="flex items-center gap-3">
+              <Shield className="w-6 h-6 text-cyan-400" />
+              <div>
+                <div className="font-bold">24/7 Support</div>
+                <div className="text-sm text-slate-400">Enterprise SLA</div>
+              </div>
+            </div>
+            <div className="h-8 w-px bg-slate-700"></div>
+            <div className="flex items-center gap-3">
+              <Zap className="w-6 h-6 text-cyan-400" />
+              <div>
+                <div className="font-bold">10+ Years</div>
+                <div className="text-sm text-slate-400">Industry Experience</div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-          <div className="flex items-center gap-3 bg-blue-50 px-5 py-3 rounded-full shadow-sm">
-            <span className="text-blue-700 font-medium">Pakistans #1 Enterprise Network</span>
+        {/* Divider */}
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-slate-700 to-transparent mb-8"></div>
+
+        {/* Bottom Bar */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="text-center md:text-left">
+            <p className="text-slate-400 text-sm">
+              © {currentYear} Ultracom Networks Corporation. All rights reserved.
+            </p>
+            <p className="text-slate-500 text-xs mt-2">
+              Registered under Pakistan Telecommunication Authority (PTA)
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <div className="px-6 py-3 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-cyan-500/10 backdrop-blur-sm rounded-xl border border-cyan-500/20">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                  Pakistan's #1 Enterprise Network
+                </span>
+              </div>
+            </div>
+            
+            <Link 
+              href="/contactus" 
+              className="px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-xl font-semibold hover:from-cyan-500 hover:to-blue-500 hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 flex items-center gap-2 group"
+            >
+              Get In Touch
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
         </div>
       </div>
+
+      {/* Back to Top Button is now in ClientFooter */}
     </footer>
   );
 }
