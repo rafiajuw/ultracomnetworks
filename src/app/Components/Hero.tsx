@@ -110,7 +110,7 @@ export default function Hero() {
                 <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.a>
               <motion.a
-                href="/contact"
+                href="/contactus"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-bold text-base rounded-lg backdrop-blur-sm hover:bg-white/10 transition-all duration-300"

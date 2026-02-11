@@ -102,7 +102,7 @@ export default function Navbar() {
             </div>
             <div className="hidden md:flex items-center gap-2">
               <MapPin className="w-3.5 h-3.5 text-cyan-400" />
-              <span className="text-xs font-medium">Lahore, Pakistan</span>
+              <span className="text-xs font-medium">Karachi, Pakistan</span>
             </div>
             <div className="flex items-center gap-2">
               <Mail className="w-3.5 h-3.5 text-cyan-400" />
