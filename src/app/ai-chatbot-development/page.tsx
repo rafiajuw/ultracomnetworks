@@ -63,7 +63,7 @@ export default function AIChatbotDevelopment() {
         {/* CTA BUTTONS */}
         <div className="mt-16 flex gap-6">
           <Link
-            href="/contact"
+            href="/contactus"
             className="px-7 py-3 bg-[#0072CE] text-white rounded-lg text-lg hover:bg-[#005FAE] transition shadow-md"
           >
             Book a Demo

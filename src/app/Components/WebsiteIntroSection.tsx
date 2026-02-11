@@ -130,7 +130,7 @@ export default function WebsiteIntroSection() {
               </Link>
               
               <Link
-                href="/contact"
+                href="/contactus"
                 className="px-8 py-4 bg-white text-slate-700 font-semibold rounded-xl border-2 border-slate-300 hover:border-cyan-400 hover:bg-cyan-50 transition-all duration-300 flex items-center justify-center gap-3 group"
               >
                 <TrendingUp className="w-5 h-5 text-cyan-600 group-hover:scale-110 transition-transform" />

@@ -565,7 +565,7 @@ export default function AboutUs() {
                   Join our dynamic team and help shape the future of connectivity in Pakistan.
                 </p>
                 <Link
-                  href="/careers"
+                  href="/career"
                   className="inline-flex items-center gap-2 text-cyan-600 font-semibold hover:text-cyan-700 transition-colors group"
                 >
                   Apply Now
@@ -577,7 +577,7 @@ export default function AboutUs() {
 
           <div className="text-center">
             <Link
-              href="/careers"
+              href="/career"
               className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold rounded-xl hover:from-cyan-500 hover:to-blue-500 hover:shadow-xl hover:shadow-cyan-500/30 transition-all duration-300"
             >
               View All Open Positions

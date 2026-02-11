@@ -123,7 +123,7 @@ export default function OurNetwork() {
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link
-              href="/contact"
+              href="/contactus"
               className="inline-flex items-center justify-center gap-4 bg-white text-slate-800 px-12 py-6 rounded-full text-xl font-bold hover:bg-gray-100 transition shadow-2xl hover:scale-105"
             >
               Get Free Quote

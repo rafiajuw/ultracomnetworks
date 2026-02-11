@@ -46,7 +46,7 @@ export default function Careers() {
     data.append("resume", resumeFile);
 
     try {
-      const res = await fetch("/api/careers", {
+      const res = await fetch("/api/form", {
         method: "POST",
         body: data,
       });

@@ -1,6 +1,23 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+// HTML escape to prevent XSS in email content
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+// Email format validation
+function isValidEmail(email: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
+
 // Nodemailer transporter
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST || "mail.ultracomnetworks.pk",
@@ -47,20 +64,34 @@ export async function POST(req: Request) {
         );
       }
 
+      if (!isValidEmail(email)) {
+        return NextResponse.json(
+          { error: "Please provide a valid email address." },
+          { status: 400 }
+        );
+      }
+
+      if (resume.size > MAX_FILE_SIZE) {
+        return NextResponse.json(
+          { error: "Resume file size must be under 10MB." },
+          { status: 400 }
+        );
+      }
+
       const resumeBuffer = Buffer.from(await resume.arrayBuffer());
 
       const resumeResult = await transporter.sendMail({
         from: `"Career Form" <${process.env.EMAIL_USER}>`,
         to: process.env.RECIPIENT_EMAIL || process.env.EMAIL_USER,
         replyTo: email,
-        subject: `Job Application: ${name} (${position})`,
+        subject: `Job Application: ${escapeHtml(name)} (${escapeHtml(position)})`,
         html: `
           <h2>Career Application</h2>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Phone:</strong> ${phone}</p>
-          <p><strong>Position:</strong> ${position}</p>
-          <p><strong>Message:</strong><br>${message.replace(/\n/g, "<br>")}</p>
+          <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+          <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+          <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
+          <p><strong>Position:</strong> ${escapeHtml(position)}</p>
+          <p><strong>Message:</strong><br>${escapeHtml(message).replace(/\n/g, "<br>")}</p>
         `,
         attachments: [
           {
@@ -71,7 +102,7 @@ export async function POST(req: Request) {
         ],
       });
 
-      console.log("✅ Career email sent to:", process.env.RECIPIENT_EMAIL || process.env.EMAIL_USER);
+      console.log("Career email sent to:", process.env.RECIPIENT_EMAIL || process.env.EMAIL_USER);
       console.log("Message ID:", resumeResult.messageId);
 
       return NextResponse.json({ message: "Application sent successfully!" });
@@ -90,10 +121,17 @@ export async function POST(req: Request) {
       );
     }
 
+    if (!isValidEmail(email)) {
+      return NextResponse.json(
+        { error: "Please provide a valid email address." },
+        { status: 400 }
+      );
+    }
+
     // Dynamic subject for Book Now vs Contact
     const subject = service
-      ? `Appointment Request: ${service} - ${name}`
-      : `Website Inquiry from ${name}`;
+      ? `Appointment Request: ${escapeHtml(service)} - ${escapeHtml(name)}`
+      : `Website Inquiry from ${escapeHtml(name)}`;
 
     const mailResult = await transporter.sendMail({
       from: `"Website Form" <${process.env.EMAIL_USER}>`,
@@ -102,32 +140,32 @@ export async function POST(req: Request) {
       subject,
       html: `
         <h2>${service ? "New Appointment Request" : "New Website Inquiry"}</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone || "Not provided"}</p>
-        ${company ? `<p><strong>Company:</strong> ${company}</p>` : ""}
-        ${service ? `<p><strong>Service:</strong> ${service}</p>` : ""}
-        <p><strong>Message:</strong><br>${message.replace(/\n/g, "<br>")}</p>
+        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Phone:</strong> ${escapeHtml(phone || "Not provided")}</p>
+        ${company ? `<p><strong>Company:</strong> ${escapeHtml(company)}</p>` : ""}
+        ${service ? `<p><strong>Service:</strong> ${escapeHtml(service)}</p>` : ""}
+        <p><strong>Message:</strong><br>${escapeHtml(message).replace(/\n/g, "<br>")}</p>
       `,
     });
 
-    console.log("✅ Email sent successfully to:", process.env.RECIPIENT_EMAIL || process.env.EMAIL_USER);
+    console.log("Email sent successfully to:", process.env.RECIPIENT_EMAIL || process.env.EMAIL_USER);
     console.log("Message ID:", mailResult.messageId);
 
     return NextResponse.json({ message: "Message sent successfully!" });
   } catch (error: any) {
-    console.error("❌ Mail Error:", {
+    console.error("Mail Error:", {
       message: error.message,
       code: error.code,
       command: error.command,
       response: error.response,
       responseCode: error.responseCode
     });
-    
+
     return NextResponse.json(
-      { 
+      {
         error: "Failed to send email. Please try again later.",
-        details: error.message 
+        details: error.message
       },
       { status: 500 }
     );

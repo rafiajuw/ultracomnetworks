@@ -54,7 +54,7 @@ export default function WebsiteDevelopment() {
 
         {/* CTA BUTTONS */}
         <div className="mt-14 flex gap-6">
-          <Link href="/contact" className="px-7 py-3 bg-[#0072CE] text-white rounded-lg text-lg hover:bg-[#005FAE] transition">
+          <Link href="/contactus" className="px-7 py-3 bg-[#0072CE] text-white rounded-lg text-lg hover:bg-[#005FAE] transition">
             Contact Us
           </Link>
           <Link href="/view-our-work" className="px-7 py-3 border border-[#0072CE] text-[#0072CE] rounded-lg text-lg hover:bg-[#E7F1FF] transition">

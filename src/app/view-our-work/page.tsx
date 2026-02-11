@@ -96,7 +96,7 @@ export default function ViewOurWork() {
           </p>
 
           <Link
-            href="/contact"
+            href="/contactus"
             className="mt-6 inline-block px-8 py-3 bg-[#0072CE] text-white rounded-xl hover:bg-[#005FAE] transition shadow-md"
           >
             Contact Us

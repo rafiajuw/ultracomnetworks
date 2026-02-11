@@ -145,7 +145,7 @@ export default function OurLocation() {
 
             </a>
             <a
-              href="/contact"
+              href="/contactus"
               className="inline-flex items-center justify-center gap-3 border-2 border-white px-10 py-6 rounded-full text-xl font-semibold hover:bg-white/10 transition"
             >
               Send Message

@@ -77,7 +77,7 @@ export default function Navbar() {
       icon: <Users className="w-4 h-4 text-cyan-500" />,
       items: [
         { name: "Leadership", href: "/aboutus#leadership", desc: "Meet our leaders" },
-        { name: "Careers", href: "/careers", desc: "Join our team" },
+        { name: "Careers", href: "/career", desc: "Join our team" },
       ],
     },
     {

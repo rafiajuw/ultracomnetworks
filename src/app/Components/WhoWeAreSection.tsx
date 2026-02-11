@@ -174,7 +174,7 @@ export default function WhoWeAreSection() {
               className="flex flex-col sm:flex-row gap-4 pt-4"
             >
               <Link
-                href="/about"
+                href="/aboutus"
                 className="group relative px-8 py-4 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:shadow-cyan-500/30 hover:from-cyan-500 hover:to-blue-500 transition-all duration-300 flex items-center justify-center gap-3"
               >
                 <span>Discover Our Story</span>
@@ -183,7 +183,7 @@ export default function WhoWeAreSection() {
               </Link>
               
               <Link
-                href="/careers"
+                href="/career"
                 className="px-8 py-4 bg-white text-slate-700 font-bold rounded-xl border-2 border-slate-300 hover:border-cyan-400 hover:bg-cyan-50 transition-all duration-300 flex items-center justify-center gap-3 group"
               >
                 <Users className="w-5 h-5 text-cyan-600 group-hover:scale-110 transition-transform" />
