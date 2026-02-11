@@ -237,7 +237,7 @@ export default function UltracomTestimonials() {
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { value: "500+", label: "Happy Clients", icon: TrendingUp },
+              { value: "50+", label: "Happy Clients", icon: TrendingUp },
               { value: "4.9/5", label: "Average Rating", icon: Star },
               { value: "99.8%", label: "Satisfaction Rate", icon: Award },
               { value: "24/7", label: "Support Available", icon: Zap },

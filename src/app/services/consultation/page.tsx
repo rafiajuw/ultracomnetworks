@@ -119,7 +119,7 @@ export default function Consultation() {
   ];
 
   const metrics = [
-    { value: "500+", label: "Audits Completed", icon: <FileText className="w-5 h-5" /> },
+    { value: "50+", label: "Audits Completed", icon: <FileText className="w-5 h-5" /> },
     { value: "40%", label: "Avg. Cost Reduction", icon: <TrendingUp className="w-5 h-5" /> },
     { value: "99.9%", label: "Uptime Improvement", icon: <Shield className="w-5 h-5" /> },
     { value: "24/7", label: "Expert Support", icon: <Headphones className="w-5 h-5" /> },

@@ -47,7 +47,7 @@ export default function WhoWeAreSection() {
 
   const stats = [
     { value: "10+", label: "Years Experience", icon: <Award className="w-4 h-4" /> },
-    { value: "500+", label: "Enterprise Clients", icon: <Users className="w-4 h-4" /> },
+    { value: "50+", label: "Enterprise Clients", icon: <Users className="w-4 h-4" /> },
     { value: "24/7", label: "Support", icon: <Server className="w-4 h-4" /> },
     { value: "99.9%", label: "Uptime", icon: <BarChart3 className="w-4 h-4" /> },
   ];
@@ -240,24 +240,7 @@ export default function WhoWeAreSection() {
             </div>
 
             {/* Floating Certification Badges */}
-            <motion.div
-              initial={{ x: -20, y: -20, opacity: 0, rotate: -5 }}
-              whileInView={{ x: 0, y: 0, opacity: 1, rotate: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, type: "spring" }}
-              className="absolute -left-6 -top-6 bg-gradient-to-br from-white to-slate-50 p-5 rounded-2xl shadow-2xl border border-slate-200/50 w-56"
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="p-2 bg-gradient-to-br from-green-100 to-green-50 rounded-lg">
-                  <Award className="w-5 h-5 text-green-600" />
-                </div>
-                <div>
-                  <div className="font-bold text-slate-800">Industry Recognized</div>
-                  <div className="text-xs text-slate-600">PTA Certified Provider</div>
-                </div>
-              </div>
-              <div className="text-sm text-slate-600">Official licensed network operator in Pakistan</div>
-            </motion.div>
+            
 
             {/* Floating Tech Badge */}
             <motion.div
