@@ -19,7 +19,8 @@ const categories = [
   { value: "infrastructure", label: "Infrastructure" },
   { value: "voice", label: "Voice & PBX" },
   { value: "consulting", label: "Consulting" },
-  { value: "web", label: "Web & Digital" }, // New category
+  { value: "web", label: "Web & Digital" },
+  { value: "ai", label: "AI & Automation" },
 ];
 
 export default function ServicesPage() {
@@ -38,11 +39,16 @@ export default function ServicesPage() {
     { title: "IT Consultation", subtitle: "Free assessment & roadmap", href: "/services/consultation", category: "consulting",  image: "/consult.png" },
 
     // New Web & Digital Services
-    { title: "Website Development", subtitle: "Professional websites for your business", href: "/services/web-development", category: "web", image: "/webdevlopment.jpeg" },
+    { title: "Website Development", subtitle: "Professional websites for your business", href: "/services/webdevlopment2", category: "web", image: "/webdevlopment.jpeg" },
     { title: "SEO Services", subtitle: "Improve your website's ranking on Google", href: "/services/seo", category: "web", image: "/seo.webp" },
     { title: "Branding & Identity", subtitle: "Logo, colors, and brand strategy", href: "/services/branding", category: "web", image: "/branding.jpg" },
     { title: "Content Creation", subtitle: "High-quality content for web & social media", href: "/services/content", category: "web", image: "/content.jpeg" },
-    { title: "Social Media Marketing", subtitle: "Grow your business online", href: "/services/social-media", category: "web", image: "/socialmedia.jpg" },
+    { title: "Social Media Marketing", subtitle: "Grow your business online", href: "/services/social-media-marketing", category: "web", image: "/socialmedia.jpg" },
+
+    // AI & Automation Services
+    { title: "AI Chatbot Development", subtitle: "Smart conversational bots for support & sales", href: "/services/ai-chatbot", category: "ai", image: "/ai-chatbot-banner.jpg" },
+    { title: "AI Applications", subtitle: "Custom ML & AI-powered business solutions", href: "/services/ai-applications", category: "ai", image: "/ai-chatbot-banner.jpg" },
+    { title: "AI Agents", subtitle: "Autonomous agents for workflow automation", href: "/services/ai-agents", category: "ai", image: "/ai-chatbot-banner.jpg" },
   ];
 
   const filteredServices = useMemo(() => {

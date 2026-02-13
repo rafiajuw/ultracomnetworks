@@ -4,9 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Menu, X, Phone, Calendar, ChevronDown, Search, ChevronRight, 
-  Globe, Shield, Zap, Users, Mail, MapPin, Clock 
+import {
+  Menu, X, Phone, Calendar, ChevronDown, Search, ChevronRight,
+  Globe, Shield, Zap, Users, Mail, MapPin, Clock, Bot
 } from "lucide-react";
 
 export default function Navbar() {
@@ -57,6 +57,15 @@ export default function Navbar() {
         { name: "Logo & Branding", href: "/services/branding", desc: "Visual identity design" },
         { name: "Seo Services", href: "/services/seo", desc: "Search engine optimization" },
         { name: "Content Creation", href: "/services/content", desc: "Engaging media content" },
+      ],
+    },
+    {
+      title: "AI & Automation",
+      icon: <Bot className="w-4 h-4 text-cyan-500" />,
+      items: [
+        { name: "AI Chatbot Development", href: "/services/ai-chatbot", desc: "Smart conversational bots" },
+        { name: "AI Applications", href: "/services/ai-applications", desc: "Custom ML & AI solutions" },
+        { name: "AI Agents", href: "/services/ai-agents", desc: "Autonomous business agents" },
       ],
     },
   ];
@@ -187,40 +196,13 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 15, scale: 0.95 }}
                     transition={{ duration: 0.2, type: "spring", stiffness: 300 }}
-                    className="absolute left-1/2 -translate-x-1/2 top-full mt-6 w-[900px] bg-white rounded-2xl shadow-2xl border border-gray-200/80 overflow-hidden z-50 before:absolute before:-top-4 before:left-0 before:w-full before:h-4 before:bg-transparent"
+                    className="absolute left-1/2 -translate-x-1/2 top-full mt-6 w-[1050px] bg-white rounded-2xl shadow-2xl border border-gray-200/80 overflow-hidden z-50 before:absolute before:-top-4 before:left-0 before:w-full before:h-4 before:bg-transparent"
                   >
                     <div className="relative overflow-hidden">
-                      {/* Background Gradient */}
                       <div className="absolute inset-0 bg-gradient-to-br from-cyan-50 via-white to-blue-50 opacity-50"></div>
-                      
-                      <div className="p-8 flex gap-10 relative z-10">
-                        <div className="w-5/12">
-                          <div className="relative overflow-hidden rounded-2xl shadow-xl group">
-                            <Image 
-                              src="/services.webp" 
-                              alt="Services" 
-                              width={400} 
-                              height={260} 
-                              className="rounded-2xl w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                          </div>
-                          <h3 className="text-2xl font-bold text-gray-900 mt-6 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
-                            Complete IT + Digital Solutions
-                          </h3>
-                          <p className="text-sm text-gray-600 mt-3 leading-relaxed">
-                            Enterprise-grade connectivity, networking infrastructure, and digital growth solutions under one roof.
-                          </p>
-                          <Link 
-                            href="/services" 
-                            className="mt-6 inline-flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-semibold px-5 py-3 rounded-full hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300 group"
-                          >
-                            Explore All Services
-                            <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                          </Link>
-                        </div>
-                        
-                        <div className="w-7/12 grid grid-cols-3 gap-8">
+
+                      <div className="p-8 relative z-10">
+                        <div className="grid grid-cols-4 gap-8">
                           {servicesColumns.map((col) => (
                             <div key={col.title} className="relative group/col">
                               <div className="flex items-center gap-2 mb-5">
@@ -229,14 +211,14 @@ export default function Navbar() {
                                 </div>
                                 <h4 className="font-bold text-gray-900 text-lg">{col.title}</h4>
                               </div>
-                              <ul className="space-y-4">
+                              <ul className="space-y-3">
                                 {col.items.map((item) => (
                                   <li key={item.name}>
-                                    <Link 
-                                      href={item.href} 
+                                    <Link
+                                      href={item.href}
                                       className="group/item block p-3 rounded-xl hover:bg-gradient-to-r hover:from-cyan-50 hover:to-blue-50 transition-all duration-300 border border-transparent hover:border-cyan-100"
                                     >
-                                      <div className="font-semibold text-gray-800 group-hover/item:text-cyan-700 transition-colors">
+                                      <div className="font-semibold text-gray-800 group-hover/item:text-cyan-700 transition-colors text-sm">
                                         {item.name}
                                       </div>
                                       <p className="text-xs text-gray-500 mt-1">{item.desc}</p>
@@ -246,6 +228,17 @@ export default function Navbar() {
                               </ul>
                             </div>
                           ))}
+                        </div>
+
+                        <div className="mt-6 pt-6 border-t border-gray-100 flex items-center justify-between">
+                          <p className="text-sm text-gray-500">Enterprise-grade IT, Digital & AI solutions under one roof.</p>
+                          <Link
+                            href="/services"
+                            className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-semibold px-5 py-2.5 rounded-full hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300 group text-sm"
+                          >
+                            All Services
+                            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          </Link>
                         </div>
                       </div>
                     </div>

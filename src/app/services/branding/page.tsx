@@ -451,7 +451,7 @@ export default function Branding() {
               </Link>
 
               <Link
-                href="/portfolio"
+                href="/view-our-work"
                 className="px-10 py-5 bg-purple-700/30 text-white font-bold rounded-2xl border-2 border-white/30 hover:border-white/50 hover:bg-purple-700/40 transition-all duration-300"
               >
                 View Our Portfolio

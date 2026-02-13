@@ -70,7 +70,7 @@ export default function AIChatbotDevelopment() {
           </Link>
 
           <Link
-            href="/portfolio"
+            href="/view-our-work"
             className="px-7 py-3 border border-[#0072CE] text-[#0072CE] rounded-lg text-lg hover:bg-[#E6F1FF] transition"
           >
             View Chatbot Examples

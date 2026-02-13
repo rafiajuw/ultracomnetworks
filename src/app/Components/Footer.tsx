@@ -182,11 +182,9 @@ export default function Footer() {
               </h3>
               <nav className="space-y-4">
                 {[
-                  { name: "Privacy Policy", href: "/privacy-policy" },
-                  { name: "Acceptable Use Policy", href: "/acceptable-policy" },
+                  { name: "Privacy Policy", href: "/privicy-policy" },
+                  { name: "Acceptable Use Policy", href: "/accectable-policy" },
                   { name: "Cookie Notice", href: "/notice-of-cookies" },
-                  { name: "Terms of Service", href: "/terms" },
-                  { name: "Compliance", href: "/compliance" },
                 ].map((link) => (
                   <Link
                     key={link.name}
@@ -278,7 +276,7 @@ export default function Footer() {
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 <span className="font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                  Pakistan's #1 Enterprise Network
+                  Pakistan&apos;s #1 Enterprise Network
                 </span>
               </div>
             </div>

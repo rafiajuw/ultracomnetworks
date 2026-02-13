@@ -16,11 +16,14 @@ const allServices = [
   { title: "Call Center Solutions", subtitle: "PBX, IVR, omnichannel", href: "/services/call-center", category: "voice", image: "/callcenter.jpeg" },
   { title: "PBX Installation", subtitle: "Hybrid & on-prem systems", href: "/services/pbx-installation", category: "voice", image: "/mock-device.jpg" },
   { title: "IT Consultation", subtitle: "Professional IT roadmap", href: "/services/consultation", category: "consulting", image: "/consult.png" },
-  { title: "Website Development", subtitle: "High-end modern websites", href: "/services/web-development", category: "web", image: "/webdevlopment.jpeg" },
+  { title: "Website Development", subtitle: "High-end modern websites", href: "/services/webdevlopment2", category: "web", image: "/webdevlopment.jpeg" },
   { title: "SEO Services", subtitle: "Rank higher on Google", href: "/services/seo", category: "web", image: "/seo.webp" },
   { title: "Branding & Identity", subtitle: "Logo + brand kits", href: "/services/branding", category: "web", image: "/branding.jpg" },
   { title: "Content Creation", subtitle: "Professional media content", href: "/services/content", category: "web", image: "/content.jpeg" },
-  { title: "Social Media Marketing", subtitle: "Grow your online brand", href: "/services/social-media", category: "web", image: "/socialmedia.jpg" },
+  { title: "Social Media Marketing", subtitle: "Grow your online brand", href: "/services/social-media-marketing", category: "web", image: "/socialmedia.jpg" },
+  { title: "AI Chatbot Development", subtitle: "Smart conversational bots", href: "/services/ai-chatbot", category: "ai", image: "/ai-chatbot-banner.jpg" },
+  { title: "AI Applications", subtitle: "Custom ML & AI solutions", href: "/services/ai-applications", category: "ai", image: "/ai-chatbot-banner.jpg" },
+  { title: "AI Agents", subtitle: "Autonomous business agents", href: "/services/ai-agents", category: "ai", image: "/ai-chatbot-banner.jpg" },
 ];
 
 export default function ServicesCarousel() {
